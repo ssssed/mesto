@@ -1,0 +1,85 @@
+.body {
+  background-color: black;
+}
+
+.page {
+  background-color: black;
+  max-width: 1280px;
+  min-width: 320px;
+  height: 100vh;
+  padding: 3.515625vw 15.625vw;
+}
+
+.header {
+  padding: 0 0 3.125vw;
+  max-width: 880px;
+  /* width: 100%; */
+  border-bottom: 1px solid #545454;
+}
+
+.profile {
+  color: white;
+  display: flex;
+  max-width: 880px;
+  padding: 40px 0 50px;
+  justify-content: space-between;
+}
+
+.profile__content {
+  display: flex;
+}
+
+.profile__img {
+  margin: 0 30px 0 0;
+}
+
+.profile__info {
+}
+
+.profile__name {
+  margin: 0 0 16px;
+}
+
+.profile__job {
+  margin: 0;
+}
+
+.profile__edit {
+  background-image: url(./images/editbutton.svg);
+  max-width: 24px;
+  max-height: 24px;
+  margin: 0;
+  padding: 0 0 0 16px;
+}
+
+.profile__add {
+  background-image: url(./images/addbutton.svg);
+}
+
+.elements {
+}
+
+.cards {
+  padding: 0;
+}
+
+.card {
+  background-color: white;
+  max-width: 282px;
+  max-height: 361px;
+  border-radius: 10px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.card__title {
+  margin: 25px 15px 31px 21px;
+}
+
+.card__img {
+  max-width: 282px;
+  max-height: 282px;
+}
+
+.card__like {
+}
