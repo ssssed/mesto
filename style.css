@@ -167,3 +167,19 @@
   border: 0;
   align-self: center;
 }
+
+.footer {
+  max-width: 880px;
+  color: #545454;
+  margin: 0 auto;
+  padding: 67px 0 60px;
+}
+
+.footer__copyright {
+  margin: 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+}
