@@ -2,6 +2,7 @@ const anchor = document.querySelector(".js-profile__edit");
 const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".modal__close-btn");
 const save = document.querySelector(".modal__save");
+const like = document.querySelectorAll(".card__like");
 
 function openEdit() {
     modal.classList.add("modal_active")

@@ -1,0 +1,14 @@
+.card__like {
+  background-image: url(../../../images/Vector\ \(Stroke\).svg);
+  width: 22px;
+  height: 19px;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  align-self: center;
+  cursor: pointer;
+}
+
+.card__like {
+  opacity: 0.8;
+}
