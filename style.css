@@ -72,6 +72,10 @@
   /* padding: 22px 0 0 0; */
 }
 
+.profile__social {
+  display: flex;
+}
+
 .profile__name {
   margin: 22px 0 16px;
   font-family: "Inter";
@@ -160,8 +164,8 @@
 }
 
 .card__img {
-  /* width: 100%; */
-  /* height: 100%; */
+  width: 100%;
+  height: 100%;
 }
 
 .card__like {
@@ -287,4 +291,82 @@
 
 .hidden {
   overflow: hidden;
+}
+
+@media screen and (max-width: 1024px) {
+  .body {
+    min-width: 320;
+    max-width: 1024px;
+  }
+  .page {
+    max-width: 1024px;
+    width: 100%;
+    padding: 0;
+  }
+
+  .header {
+    margin: 0;
+    max-width: 1024px;
+  }
+
+  .header__img{
+    margin: 28px 0 0 27px;
+  }
+
+  .profile{
+    max-width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile__content{
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .profile__img {
+    margin: 0 auto;
+  }
+
+  .profile__info{
+    margin: 0 auto;
+  }
+
+  .profile__name {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 33px;
+    text-align: center;
+  }
+
+  .profile__job{
+    margin: 0;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+  }
+
+  .profile__add {
+    margin: 36px auto 0;
+    width: 282px;
+    background-image: url(./images/AddButtonmobile.svg);
+  }
+
+  .cards {
+    max-width: 88.125vw;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+  }
+
+  .footer{
+    margin: 0 auto;
+    max-width: 88.125vw;
+  }
 }
