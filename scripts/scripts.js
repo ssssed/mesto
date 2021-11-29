@@ -1,4 +1,4 @@
-const anchor = document.querySelector(".js-profile__edit");
+const anchor = document.querySelector(".profile__edit");
 const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".modal__close-btn");
 const save = document.querySelector(".modal__save");
