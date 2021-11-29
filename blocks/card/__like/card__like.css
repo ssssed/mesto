@@ -9,6 +9,6 @@
   cursor: pointer;
 }
 
-.card__like {
+.card__like:hover {
   opacity: 0.8;
 }
