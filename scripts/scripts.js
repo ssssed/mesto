@@ -6,19 +6,17 @@ const like = document.querySelectorAll(".card__like");
 
 function openEdit() {
     modal.classList.add("modal_active")
-    document.body.classList.add("hidden");
 }
 
 function closeEdit() {
     modal.classList.remove("modal_active");
-    document.body.classList.remove("hidden");
 }
 
 function profileRename() {
+    let newName = document.getElementById("name").value;
     let profileName = document.querySelector(".profile__name");
-    let profileJob = document.querySelector(".profile__job")
-    let newName = document.querySelector(".modal__name").value;
-    let newJob = document.querySelector(".modal__job").value;
+    let newJob = document.getElementById("job").value;
+    let profileJob = document.querySelector(".profile__job");
     profileName.textContent = newName;
     profileJob.textContent = newJob;
     closeEdit();

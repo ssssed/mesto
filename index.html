@@ -9,23 +9,23 @@
   <body class="body">
     <div class="page">
       <header class="header">
-        <img src="./images/logo.svg" alt="Лого" class="header__img" />
+        <img src="./images/logo.svg" alt="Логотип" class="header__img" />
       </header>
-      <section class="profile">
-        <div class="profile__content">
-          <img src="./images/Avatar.png" alt="Ава" class="profile__img" />
-          <div class="profile__info">
-            <div class="profile__social">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button class="profile__edit"></button>
+      <main>
+        <section class="profile">
+          <div class="profile__content">
+            <img src="./images/Avatar.png" alt="Ава" class="profile__img" />
+            <div class="profile__info">
+              <div class="profile__social">
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button type="button" class="profile__edit"></button>
+              </div>
+              <p class="profile__job">Исследователь океана</p>
             </div>
-            <p class="profile__job">Исследователь океана</p>
           </div>
-        </div>
-        <button class="profile__add"></button>
-      </section>
-      <section class="elements">
-        <div class="cards">
+          <button type="button" class="profile__add"></button>
+        </section>
+        <section class="elements">
           <div class="card">
             <img
               src="./images/Крачевск.png"
@@ -34,7 +34,7 @@
             />
             <div class="card__item">
               <h2 class="card__title">Карачевск</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </div>
           <div class="card">
@@ -45,14 +45,14 @@
             />
             <div class="card__item">
               <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </div>
           <div class="card">
             <img src="./images/Домбай.png" alt="Домбай" class="card__img" />
             <div class="card__item">
               <h2 class="card__title">Домбай</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </div>
           <div class="card">
@@ -63,14 +63,14 @@
             />
             <div class="card__item">
               <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </div>
           <div class="card">
             <img src="./images/Домбай.png" alt="Домбай" class="card__img" />
             <div class="card__item">
               <h2 class="card__title">Домбай</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </div>
           <div class="card">
@@ -81,29 +81,34 @@
             />
             <div class="card__item">
               <h2 class="card__title">Карачевск</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
       <footer class="footer">
         <h2 class="footer__copyright">© 2021 Конешов Игорь</h2>
       </footer>
-      <section class="modal">
+      <form class="modal">
         <div class="modal__inner">
-          <div class="modal__content">
-            <h2 class="modal__title">Редактировать профиль</h2>
-            <input type="text" placeholder="Жак-Ив Кусто" class="modal__name" />
-            <input
-              type="text"
-              placeholder="Исследователь океана"
-              class="modal__job"
-            />
-            <button class="modal__save">Сохранить</button>
-          </div>
-          <button class="modal__close-btn"></button>
+          <h2 class="modal__title">Редактировать профиль</h2>
+          <input
+            type="text"
+            name="Имя"
+            id="name"
+            placeholder="Имя"
+            class="modal__input"
+          />
+          <input
+            id="job"
+            type="text"
+            placeholder="Работа"
+            class="modal__input"
+          />
+          <button type="button" class="modal__save">Сохранить</button>
+          <button type="button" class="modal__close-btn"></button>
         </div>
-      </section>
+      </form>
     </div>
     <script src="./scripts/scripts.js"></script>
   </body>

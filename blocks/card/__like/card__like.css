@@ -1,5 +1,5 @@
 .card__like {
-  background-image: url(../../../images/Vector\ \(Stroke\).svg);
+  background-image: url(../../../images/like.svg);
   width: 22px;
   height: 19px;
   padding: 0;
@@ -7,6 +7,7 @@
   border: 0;
   align-self: center;
   cursor: pointer;
+  transition: opacity .1s linear;
 }
 
 .card__like:hover {

@@ -2,7 +2,7 @@
   background-image: url(../../../images/editbutton.svg);
   width: 24px;
   height: 24px;
-  margin: 34px 5px 0 10px;
+  margin: 22px 0 0 18px;
   padding: 0;
   background-color: transparent;
   border: 0;
@@ -11,4 +11,13 @@
 
 .profile__edit:hover {
   opacity: 0.8;
+}
+
+@media screen and (max-width: 1024px) {
+  .profile__edit {
+    width: 18px;
+    margin: 29px 0 0 36px;
+    height: 18px;
+    background-image: url(../../../images/EditButtonmobile.svg);
+  }
 }
