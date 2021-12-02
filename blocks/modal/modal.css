@@ -6,4 +6,7 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

@@ -2,11 +2,15 @@
   background-image: url(../../../images/addbutton.svg);
   background-color: transparent;
   margin: 33px 0 0;
-  border: 0;
   width: 150px;
   height: 50px;
+  border: 2px solid #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background-position: center;
   padding: 0;
   cursor: pointer;
+  background-repeat: no-repeat;
 }
 
 .profile__add:hover {
@@ -18,8 +22,5 @@
   .profile__add {
     margin: 33px auto 0;
     width: 282px;
-    background-image: url(../../../images/AddButtonmobile.svg);
-    /* Ковер тут не поможет т.к и остальные свойства background-size т.к. картинка этой кнопки сама по себе отличается на брифе она растянута и тонкая,
-    а если так сделать со старой картинкой и этим свойством, она будет не похожа на ту, что в брифе, поэтому надо оставить так */
   }
 }

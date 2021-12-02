@@ -94,24 +94,26 @@
         <h2 class="footer__copyright">© 2021 Конешов Игорь</h2>
       </footer>
       <section class="modal">
-        <form class="modal__inner">
+        <div class="modal__container">
           <h2 class="modal__title">Редактировать профиль</h2>
-          <input
-            type="text"
-            name="Имя"
-            id="name"
-            placeholder="Имя"
-            class="modal__input"
-          />
-          <input
-            id="job"
-            type="text"
-            placeholder="Работа"
-            class="modal__input"
-          />
-          <button type="submit" class="modal__save">Сохранить</button>
           <button type="button" class="modal__close-btn"></button>
-        </form>
+          <form name="modal__inner" class="modal__inner">
+            <input
+              type="text"
+              name="Имя"
+              id="name"
+              placeholder="Имя"
+              class="modal__input"
+            />
+            <input
+              id="job"
+              type="text"
+              placeholder="Работа"
+              class="modal__input"
+            />
+            <button type="submit" class="modal__save">Сохранить</button>
+          </form>
+        </div>
       </section>
     </div>
     <script src="./scripts/scripts.js"></script>

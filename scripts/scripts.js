@@ -1,5 +1,6 @@
 const anchor = document.querySelector(".profile__edit");
 const modal = document.querySelector(".modal");
+const form = document.querySelector(".modal__inner");
 const closeBtn = document.querySelector(".modal__close-btn");
 const save = document.querySelector(".modal__save");
 const like = document.querySelectorAll(".card__like");
@@ -28,4 +29,4 @@ function profileRename(evt) {
 
 anchor.addEventListener("click", openEdit);
 closeBtn.addEventListener("click", closeEdit);
-modal.addEventListener("submit", profileRename);
+form.addEventListener("submit", profileRename);

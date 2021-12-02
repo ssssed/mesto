@@ -8,8 +8,8 @@
   border-radius: 2px;
   cursor: pointer;
   max-width: 358px;
-  margin: 47px 36px 23px 33px;
-  font-family: "Inter";
+  margin: 47px 36px 39px 36px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -23,7 +23,7 @@
 
 @media screen and (max-width: 1024px) {
   .modal__save {
-    margin: 45px 21px 0;
+    margin: 45px 21px 23px;
     width: 238px;
     height: 46px;
     font-size: 14px;
