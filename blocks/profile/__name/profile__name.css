@@ -14,13 +14,10 @@
 @media screen and (max-width: 1024px) {
 
   .profile__name {
-    font-family: "Inter", Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: 500;
     font-size: 27px;
     line-height: 33px;
     text-align: center;
-    margin: 28px 0 0;
+    margin: 28px 8px 0;
     max-width: 330px;
   }
 }

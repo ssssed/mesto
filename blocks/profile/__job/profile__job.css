@@ -15,10 +15,6 @@
 @media screen and (max-width: 1024px) {
 
   .profile__job{
-    margin: 0;
-    font-family: "Inter", Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: normal;
     font-size: 14px;
     line-height: 17px;
     text-align: center;

@@ -14,11 +14,6 @@
   @media screen and (max-width: 1024px) {
 
   .modal__job{
-    font-family: "Inter", Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 17px;
     padding-left: 0;
     padding-right: 0;    
   }
