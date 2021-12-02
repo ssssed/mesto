@@ -29,7 +29,7 @@
 @import url(../blocks/card/__like/card__like.css);
 /* modal */
 @import url(../blocks/modal/modal.css);
-@import url(../blocks/modal/__container/modal__continer.css);
+@import url(../blocks/modal/__continer/modal__continer.css);
 @import url(../blocks/modal/__close-btn/modal__close-btn.css);
 @import url(../blocks/modal/__inner/modal__inner.css);
 @import url(../blocks/modal/__input/modal__input.css);
