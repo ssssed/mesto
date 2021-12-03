@@ -1,7 +1,7 @@
 .profile__add {
   background-image: url(../../../images/addbutton.svg);
   background-color: transparent;
-  margin: 33px 0 0;
+  margin: 36px 0 0;
   width: 150px;
   height: 50px;
   border: 2px solid #FFFFFF;
@@ -20,7 +20,10 @@
 @media screen and (max-width: 1024px) {
 
   .profile__add {
-    margin: 33px auto 0;
+    margin: 34px auto 0;
+    background-size: 16px;
+    /* width: 16px; */
+    /* height: 16px; */
     width: 282px;
   }
 }
