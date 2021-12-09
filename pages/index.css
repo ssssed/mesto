@@ -27,6 +27,7 @@
 @import url(../blocks/card/__img/card__img.css);
 @import url(../blocks/card/__item/card__item.css);
 @import url(../blocks/card/__like/card__like.css);
+@import url(../blocks/card/__like/_active/card__like_active.css);
 /* modal */
 @import url(../blocks/modal/modal.css);
 @import url(../blocks/modal/__container/modal__container.css);

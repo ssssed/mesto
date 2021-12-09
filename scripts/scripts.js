@@ -27,6 +27,16 @@ function profileRename(evt) {
     closeEdit();
 }
 
+function likeClick(btn) {
+    btn.classList.toggle("card__like_active");
+}
+
+like.forEach((btn) => {
+    btn.addEventListener("click", function() {
+        likeClick(btn);
+    })
+})
+
 anchor.addEventListener("click", openEdit);
 closeBtn.addEventListener("click", closeEdit);
 form.addEventListener("submit", profileRename);
