@@ -42,7 +42,6 @@ let profileName = document.querySelector(".profile__name");
 let newJob = document.getElementById("job");
 let profileJob = document.querySelector(".profile__job");
 
-console.log(template);
 function open(popup) {
     if (popup.target.classList.value === "profile__edit") {
       modal.classList.add("modal_active");
@@ -94,6 +93,19 @@ addForm.addEventListener("submit", e => {
 
 initialCard();
 
+const deleteCard = document.querySelectorAll(".card__trash");
+
+function delCard(btn) {
+    const newItem = btn.closest(".card");
+    newItem.remove();
+}
+
+deleteCard.forEach((btn) => {
+    btn.addEventListener("click", function () {
+        delCard(btn);
+    })
+})
+
 const like = document.querySelectorAll(".card__like");
 
 function likeClick(btn) {
@@ -105,6 +117,7 @@ like.forEach((btn) => {
         likeClick(btn);
     })
 })
+
 anchor.addEventListener("click", open);
 add.addEventListener("click", open)
 closeEditBtn.addEventListener("click", close);
