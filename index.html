@@ -29,72 +29,7 @@
           </div>
           <button type="button" class="profile__add"></button>
         </section>
-        <section class="elements">
-          <div class="card">
-            <button type="button" class="card__trash"></button>
-            <img
-              src="./images/Крачевск.png"
-              alt="Карачевск"
-              class="card__img"
-            />
-            <div class="card__item">
-              <h2 class="card__title">Карачевск</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <button type="button" class="card__trash"></button>
-            <img
-              src="./images/Эльбрус.png"
-              alt="Гора Эльбрус"
-              class="card__img"
-            />
-            <div class="card__item">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <button type="button" class="card__trash"></button>
-            <img src="./images/Домбай.png" alt="Домбай" class="card__img" />
-            <div class="card__item">
-              <h2 class="card__title">Домбай</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <button type="button" class="card__trash"></button>
-            <img
-              src="./images/Эльбрус.png"
-              alt="Гора Эльбрус"
-              class="card__img"
-            />
-            <div class="card__item">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <button type="button" class="card__trash"></button>
-            <img src="./images/Домбай.png" alt="Домбай" class="card__img" />
-            <div class="card__item">
-              <h2 class="card__title">Домбай</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <button type="button" class="card__trash"></button>
-            <img
-              src="./images/Крачевск.png"
-              alt="Карачевск"
-              class="card__img"
-            />
-            <div class="card__item">
-              <h2 class="card__title">Карачевск</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-        </section>
+        <section class="elements"></section>
       </main>
       <footer class="footer">
         <h2 class="footer__copyright">© 2021 Конешов Игорь</h2>
@@ -125,25 +60,35 @@
         <div class="modal__container">
           <h2 class="modal__title">Новое место</h2>
           <button type="button" class="modaladd__close-btn"></button>
-          <form name="modal__inner" class="modal__inner">
+          <form name="modal__add" class="modaladd__inner">
             <input
               type="text"
               name="Название"
               id="placename"
               placeholder="Название"
-              class="modal__input"
+              class="modaladd__input"
             />
             <input
-              id="link"
+              id="imglink"
               type="text"
               placeholder="Ссылка на картинку"
-              class="modal__input"
+              class="modaladd__input"
             />
             <button type="submit" class="modal__save">Создать</button>
           </form>
         </div>
       </section>
     </div>
+    <template class="template">
+      <div class="card">
+        <button type="button" class="card__trash"></button>
+        <img src="" alt="" class="card__img" />
+        <div class="card__item">
+          <h2 class="card__title"></h2>
+          <button type="button" class="card__like"></button>
+        </div>
+      </div>
+    </template>
     <script src="./scripts/scripts.js"></script>
   </body>
 </html>

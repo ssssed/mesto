@@ -40,6 +40,8 @@
 /* modaladd */
 @import url(../blocks/modaladd/modaladd.css);
 @import url(../blocks/modaladd/__close-btn/modaladd__close-btn.css);
+@import url(../blocks/modaladd/__inner/modaladd__inner.css);
+@import url(../blocks/modaladd/__input/modaladd__input.css);
 @import url(../blocks/modal/_active/modal_active.css);
 /* footer */
 @import url(../blocks/footer/footer.css);
