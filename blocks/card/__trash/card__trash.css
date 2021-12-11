@@ -10,6 +10,7 @@
     z-index: 2;
     cursor: pointer;
     background-image: url(../../../images/trash.svg);
+    transition: opacity 0.3s linear;
 }
 
 .card__trash:hover {

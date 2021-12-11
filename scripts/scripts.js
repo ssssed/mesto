@@ -42,27 +42,29 @@ let profileName = document.querySelector(".profile__name");
 let newJob = document.getElementById("job");
 let profileJob = document.querySelector(".profile__job");
 
-function open(popup) {
-    if (popup.target.classList.value === "profile__edit") {
-      modal.classList.add("modal_active");
-      newName.value = profileName.textContent;
-      newJob.value = profileJob.textContent;
-    }
-    
-    if (popup.target.classList.value === "profile__add") {
-        modalAdd.classList.add("modal_active");
-    }
-}
+anchor.addEventListener("click", (evt) => {
+  modal.classList.add("modal_active");
+})
 
-function close(popup) {
-    if (popup.target.classList.value === "modal__close-btn") {
-      modal.classList.remove("modal_active");
-    }
-    
-    if (popup.target.classList.value === "modaladd__close-btn") {
-        modalAdd.classList.remove("modal_active");
-    }
-}
+add.addEventListener("click", (evt) => {
+  modalAdd.classList.add("modal_active");
+})
+
+closeEditBtn.addEventListener("click", (evt) => {
+  modal.classList.remove("modal_active");
+})
+
+closeAddBtn.addEventListener("click", (evt) => {
+  modalAdd.classList.remove("modal_active");
+})
+
+form.addEventListener("submit", (evt) => {
+  modal.classList.remove("modal_active");
+})
+
+addForm.addEventListener("submit", (evt) => {
+  modalAdd.classList.remove("modal_active");
+})
 
 function initialCard() {
     for (let i = 0; i < initialCards.length; i++) {
@@ -70,6 +72,12 @@ function initialCard() {
         newItem.querySelector(".card__title").textContent = initialCards[i].name;
         newItem.querySelector(".card__img").alt = initialCards[i].name;
         newItem.querySelector(".card__img").src = initialCards[i].link;
+        newItem.querySelector(".card__trash").addEventListener("click", (evt) => {
+          evt.target.parentElement.remove();
+        });
+        newItem.querySelector(".card__like").addEventListener("click", (evt) => {
+          evt.target.classList.toggle("card__like_active");
+        });
         list.append(newItem);
     }
 }
@@ -78,7 +86,6 @@ function profileRename(evt) {
     evt.preventDefault();
     profileName.textContent = newName.value;
     profileJob.textContent = newJob.value;
-    closeEdit();
 }
 
 addForm.addEventListener("submit", e => {
@@ -88,38 +95,15 @@ addForm.addEventListener("submit", e => {
     newItem.querySelector(".card__title").textContent = addInputName.value;
     newItem.querySelector(".card__img").alt = addInputName.value;
     newItem.querySelector(".card__img").src = addInputLink.value;
+    newItem.querySelector(".card__trash").addEventListener("click", (evt) => {
+      evt.target.parentElement.remove();
+    });
+    newItem.querySelector(".card__like").addEventListener("click", (evt) => {
+      evt.target.classList.toggle("card__like_active");
+    });
     list.append(newItem);
 })
 
 initialCard();
 
-const deleteCard = document.querySelectorAll(".card__trash");
-
-function delCard(btn) {
-    const newItem = btn.closest(".card");
-    newItem.remove();
-}
-
-deleteCard.forEach((btn) => {
-    btn.addEventListener("click", function () {
-        delCard(btn);
-    })
-})
-
-const like = document.querySelectorAll(".card__like");
-
-function likeClick(btn) {
-    btn.classList.toggle("card__like_active");
-}
-
-like.forEach((btn) => {
-    btn.addEventListener("click", function() {
-        likeClick(btn);
-    })
-})
-
-anchor.addEventListener("click", open);
-add.addEventListener("click", open)
-closeEditBtn.addEventListener("click", close);
-closeAddBtn.addEventListener("click", close);
 form.addEventListener("submit", profileRename);

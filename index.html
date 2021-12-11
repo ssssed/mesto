@@ -56,23 +56,26 @@
           </form>
         </div>
       </section>
-      <section class="modaladd">
+      <section class="modal modaladd">
         <div class="modal__container">
           <h2 class="modal__title">Новое место</h2>
-          <button type="button" class="modaladd__close-btn"></button>
-          <form name="modal__add" class="modaladd__inner">
+          <button
+            type="button"
+            class="modal__close-btn modaladd__close-btn"
+          ></button>
+          <form name="modal__add" class="modal__inner modaladd__inner">
             <input
               type="text"
               name="Название"
               id="placename"
               placeholder="Название"
-              class="modaladd__input"
+              class="modal__input modaladd__input"
             />
             <input
               id="imglink"
               type="text"
               placeholder="Ссылка на картинку"
-              class="modaladd__input"
+              class="modal__input modaladd__input"
             />
             <button type="submit" class="modal__save">Создать</button>
           </form>
