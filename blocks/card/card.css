@@ -10,14 +10,3 @@
   z-index: 1;
   overflow: hidden;
 }
-
-.card::after {
-  content: "";
-  position: absolute;
-  background-color:rgba(0,0,0,0.2);
-  height: 282px;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1;
-}

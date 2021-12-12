@@ -13,6 +13,8 @@ const template = document.querySelector(".template");
 const list = document.querySelector(".elements");
 const openCard = document.querySelector(".opencard");
 const closeCardBtn = document.querySelector(".opencard__close-btn");
+const newCard = document.querySelector(".opencard__img");
+const newCardName = document.querySelector(".opencard__title");
 const initialCards = [
   {
     name: 'Архыз',
@@ -46,6 +48,8 @@ let profileJob = document.querySelector(".profile__job");
 
 anchor.addEventListener("click", (evt) => {
   modal.classList.add("modal_active");
+  newName.value = profileName.textContent;
+  newJob.value = profileJob.textContent;
 })
 
 add.addEventListener("click", (evt) => {
@@ -80,6 +84,12 @@ function initialCard() {
         newItem.querySelector(".card__like").addEventListener("click", (evt) => {
           evt.target.classList.toggle("card__like_active");
         });
+        newItem.querySelector(".card__img").addEventListener("click", (evt) => {
+          openCard.classList.add("modal_active");
+          newCard.src = initialCards[i].link;
+          newCard.alt = initialCards[i].name;
+          newCardName.textContent = initialCards[i].name;
+        })
         list.append(newItem);
     }
 }
@@ -103,9 +113,19 @@ addForm.addEventListener("submit", e => {
     newItem.querySelector(".card__like").addEventListener("click", (evt) => {
       evt.target.classList.toggle("card__like_active");
     });
+    newItem.querySelector(".card__img").addEventListener("click", (evt) => {
+      openCard.classList.add("modal_active");
+      newCard.src = newItem.querySelector(".card__img").src;
+      newCard.alt = addInputName.value;
+      newCardName.textContent = addInputName.value;
+    })
     list.append(newItem);
 })
 
 initialCard();
 
 form.addEventListener("submit", profileRename);
+
+closeCardBtn.addEventListener("click", (evt) => {
+  openCard.classList.remove("modal_active");
+})
