@@ -29,6 +29,12 @@
 @import url(../blocks/card/__like/card__like.css);
 @import url(../blocks/card/__like/_active/card__like_active.css);
 @import url(../blocks/card/__trash/card__trash.css);
+/* opencard */
+@import url(../blocks/opencard/opencard.css);
+@import url(../blocks/opencard/__img/opencard__img.css);
+@import url(../blocks/opencard/__title/opencard__title.css);
+@import url(../blocks/opencard/__content/opencard__content.css);
+@import url(../blocks/opencard/__close-btn/opencard__close-btn.css);
 /* modal */
 @import url(../blocks/modal/modal.css);
 @import url(../blocks/modal/__container/modal__container.css);

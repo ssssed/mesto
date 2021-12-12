@@ -11,6 +11,8 @@ const addInputLink = document.getElementById("imglink");
 const addForm = document.querySelector(".modaladd__inner");
 const template = document.querySelector(".template");
 const list = document.querySelector(".elements");
+const openCard = document.querySelector(".opencard");
+const closeCardBtn = document.querySelector(".opencard__close-btn");
 const initialCards = [
   {
     name: 'Архыз',
