@@ -11,6 +11,7 @@
   padding: 0;
   cursor: pointer;
   background-repeat: no-repeat;
+  transition: opacity 0.3s linear;
 }
 
 .profile__add:hover {

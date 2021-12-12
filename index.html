@@ -29,66 +29,7 @@
           </div>
           <button type="button" class="profile__add"></button>
         </section>
-        <section class="elements">
-          <div class="card">
-            <img
-              src="./images/Крачевск.png"
-              alt="Карачевск"
-              class="card__img"
-            />
-            <div class="card__item">
-              <h2 class="card__title">Карачевск</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="./images/Эльбрус.png"
-              alt="Гора Эльбрус"
-              class="card__img"
-            />
-            <div class="card__item">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img src="./images/Домбай.png" alt="Домбай" class="card__img" />
-            <div class="card__item">
-              <h2 class="card__title">Домбай</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="./images/Эльбрус.png"
-              alt="Гора Эльбрус"
-              class="card__img"
-            />
-            <div class="card__item">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img src="./images/Домбай.png" alt="Домбай" class="card__img" />
-            <div class="card__item">
-              <h2 class="card__title">Домбай</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="./images/Крачевск.png"
-              alt="Карачевск"
-              class="card__img"
-            />
-            <div class="card__item">
-              <h2 class="card__title">Карачевск</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-        </section>
+        <section class="elements"></section>
       </main>
       <footer class="footer">
         <h2 class="footer__copyright">© 2021 Конешов Игорь</h2>
@@ -115,7 +56,52 @@
           </form>
         </div>
       </section>
+      <section class="modal modaladd">
+        <div class="modal__container">
+          <h2 class="modal__title">Новое место</h2>
+          <button
+            type="button"
+            class="modal__close-btn modaladd__close-btn"
+          ></button>
+          <form name="modal__add" class="modal__inner modaladd__inner">
+            <input
+              type="text"
+              name="Название"
+              id="placename"
+              placeholder="Название"
+              class="modal__input modaladd__input"
+            />
+            <input
+              id="imglink"
+              type="text"
+              placeholder="Ссылка на картинку"
+              class="modal__input modaladd__input"
+            />
+            <button type="submit" class="modal__save">Создать</button>
+          </form>
+        </div>
+      </section>
     </div>
+    <template class="template">
+      <div class="card">
+        <button type="button" class="card__trash"></button>
+        <img src="" alt="Картинка" class="card__img" />
+        <div class="card__item">
+          <h2 class="card__title"></h2>
+          <button type="button" class="card__like"></button>
+        </div>
+      </div>
+    </template>
+    <section class="modal opencard">
+      <div class="opencard__content">
+        <img src="" alt="Картинка" class="opencard__img" />
+        <h2 class="opencard__title"></h2>
+        <button
+          type="button"
+          class="modal__close-btn opencard__close-btn"
+        ></button>
+      </div>
+    </section>
     <script src="./scripts/scripts.js"></script>
   </body>
 </html>
