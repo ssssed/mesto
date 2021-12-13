@@ -44,10 +44,10 @@
 @import url(../blocks/modal/__save/modal__save.css);
 @import url(../blocks/modal/__title/modal__title.css);
 /* modaladd */
-@import url(../blocks/modaladd/modaladd.css);
-@import url(../blocks/modaladd/__close-btn/modaladd__close-btn.css);
-@import url(../blocks/modaladd/__inner/modaladd__inner.css);
-@import url(../blocks/modaladd/__input/modaladd__input.css);
+@import url(../blocks/modal-add/modal-add.css);
+@import url(../blocks/modal-add/__close-btn/modal-add__close-btn.css);
+@import url(../blocks/modal-add/__inner/modal-add__inner.css);
+@import url(../blocks/modal-add/__input/modal-add__input.css);
 @import url(../blocks/modal/_active/modal_active.css);
 /* footer */
 @import url(../blocks/footer/footer.css);

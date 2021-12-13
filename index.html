@@ -34,10 +34,13 @@
       <footer class="footer">
         <h2 class="footer__copyright">© 2021 Конешов Игорь</h2>
       </footer>
-      <section class="modal">
+      <section class="modal modal-edit">
         <div class="modal__container">
           <h2 class="modal__title">Редактировать профиль</h2>
-          <button type="button" class="modal__close-btn"></button>
+          <button
+            type="button"
+            class="modal__close-btn modal-edit__close-btn"
+          ></button>
           <form name="modal__inner" class="modal__inner">
             <input
               type="text"
@@ -52,30 +55,32 @@
               placeholder="Работа"
               class="modal__input"
             />
-            <button type="submit" class="modal__save">Сохранить</button>
+            <button type="submit" class="modal__save modal-edit__save">
+              Сохранить
+            </button>
           </form>
         </div>
       </section>
-      <section class="modal modaladd">
+      <section class="modal modal-add">
         <div class="modal__container">
           <h2 class="modal__title">Новое место</h2>
           <button
             type="button"
-            class="modal__close-btn modaladd__close-btn"
+            class="modal__close-btn modal-add__close-btn"
           ></button>
-          <form name="modal__add" class="modal__inner modaladd__inner">
+          <form name="modal__add" class="modal__inner modal-add__inner">
             <input
               type="text"
               name="Название"
               id="placename"
               placeholder="Название"
-              class="modal__input modaladd__input"
+              class="modal__input modal-add__input"
             />
             <input
               id="imglink"
               type="text"
               placeholder="Ссылка на картинку"
-              class="modal__input modaladd__input"
+              class="modal__input modal-add__input"
             />
             <button type="submit" class="modal__save">Создать</button>
           </form>
