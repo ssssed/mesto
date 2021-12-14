@@ -1,7 +1,7 @@
 const editBtn = document.querySelector(".profile__edit");
 const modalEditProfile = document.querySelector(".modal-edit");
 const modalAddCard = document.querySelector(".modal-add");
-const form = document.querySelector(".modal__inner");
+const editForm = document.querySelector(".modal-edit__inner");
 const closeEditBtn = document.querySelector(".modal-edit__close-btn");
 const closeAddBtn = document.querySelector(".modal-add__close-btn");
 const addBtn = document.querySelector(".profile__add");
@@ -41,19 +41,21 @@ const initialCards = [
   },
 ];
 
-const newName = document.getElementById("name");
+const userNameInput = document.getElementById("name");
 const profileName = document.querySelector(".profile__name");
-const newJob = document.getElementById("job");
+const userJobInput = document.getElementById("job");
 const profileJob = document.querySelector(".profile__job");
 
 editBtn.addEventListener("click", (evt) => {
   openPopup(modalEditProfile);
-  newName.value = profileName.textContent;
-  newJob.value = profileJob.textContent;
+  userNameInput.value = profileName.textContent;
+  userJobInput.value = profileJob.textContent;
 });
 
 addBtn.addEventListener("click", (evt) => {
   openPopup(modalAddCard);
+  addInputName.value = "";
+  addInputLink.value = "";
 });
 
 closeEditBtn.addEventListener("click", (evt) => {
@@ -64,7 +66,8 @@ closeAddBtn.addEventListener("click", (evt) => {
   closePopup(modalAddCard);
 });
 
-form.addEventListener("submit", (evt) => {
+editForm.addEventListener("submit", (evt) => {
+  renameProfile();
   closePopup(modalEditProfile);
 });
 
@@ -80,11 +83,12 @@ function closePopup(popup) {
   popup.classList.remove("modal_active");
 }
 
-function createCard(item, title, address) {
-  item.querySelector(".card__title").textContent = title;
-  item.querySelector(".card__img").alt = title;
-  item.querySelector(".card__img").src = address;
-  return item;
+function createCard(title, address) {
+  const newItem = template.content.cloneNode(true).querySelector(".card");
+  newItem.querySelector(".card__title").textContent = title;
+  newItem.querySelector(".card__img").alt = title;
+  newItem.querySelector(".card__img").src = address;
+  return newItem;
 }
 
 function renderCard(list, item, title, address) {
@@ -101,8 +105,7 @@ function openCardPopup(name, link) {
 
 function loadingCards() {
   for (let i = 0; i < initialCards.length; i++) {
-    const newItem = template.content.cloneNode(true).querySelector(".card");
-    createCard(newItem, initialCards[i].name, initialCards[i].link);
+    newItem = createCard(initialCards[i].name, initialCards[i].link);
     newItem.querySelector(".card__trash").addEventListener("click", (evt) => {
       evt.target.closest(".card").remove();
     });
@@ -116,19 +119,17 @@ function loadingCards() {
   }
 }
 
-function profileRename(evt) {
+function renameProfile(evt) {
   evt.preventDefault();
-  profileName.textContent = newName.value;
-  profileJob.textContent = newJob.value;
+  profileName.textContent = userNameInput.value;
+  profileJob.textContent = userJobInput.value;
   closePopup(modalEditProfile);
 }
 
 addForm.addEventListener("submit", (e) => {
   
   e.preventDefault();
-
-  const newItem = template.content.cloneNode(true).querySelector(".card");
-  createCard(newItem, addInputName.value, addInputLink.value);
+  newItem = createCard(addInputName.value, addInputLink.value);
   newItem.querySelector(".card__trash").addEventListener("click", (evt) => {
     evt.target.closest(".card").remove();
   });
@@ -146,8 +147,6 @@ addForm.addEventListener("submit", (e) => {
 
 loadingCards();
 
-form.addEventListener("submit", profileRename);
-
 closeCardBtn.addEventListener("click", (evt) => {
-  modalOpenCard.classList.remove("modal_active");
+  closePopup(modalOpenCard);
 });
