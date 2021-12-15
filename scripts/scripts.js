@@ -40,7 +40,6 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
-
 const userNameInput = document.getElementById("name");
 const profileName = document.querySelector(".profile__name");
 const userJobInput = document.getElementById("job");
@@ -67,11 +66,14 @@ closeAddBtn.addEventListener("click", (evt) => {
 });
 
 editForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
   renameProfile();
   closePopup(modalEditProfile);
 });
 
 addForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  renderCard(listCards, addInputName.value, addInputLink.value);
   closePopup(modalAddCard);
 });
 
@@ -88,12 +90,20 @@ function createCard(title, address) {
   newItem.querySelector(".card__title").textContent = title;
   newItem.querySelector(".card__img").alt = title;
   newItem.querySelector(".card__img").src = address;
+  newItem.querySelector(".card__trash").addEventListener("click", (evt) => {
+      evt.target.closest(".card").remove();
+    });
+    newItem.querySelector(".card__like").addEventListener("click", (evt) => {
+      evt.target.classList.toggle("card__like_active");
+    });
+    newItem.querySelector(".card__img").addEventListener("click", (evt) => {
+    openCardPopup(title, address);
+  });
   return newItem;
 }
 
-function renderCard(list, item, title, address) {
-  createCard(item, title, address);
-  return list.append(item);
+function renderCard(list, title, address) {
+  return list.append(createCard(title, address));
 }
 
 function openCardPopup(name, link) {
@@ -105,45 +115,15 @@ function openCardPopup(name, link) {
 
 function loadingCards() {
   for (let i = 0; i < initialCards.length; i++) {
-    newItem = createCard(initialCards[i].name, initialCards[i].link);
-    newItem.querySelector(".card__trash").addEventListener("click", (evt) => {
-      evt.target.closest(".card").remove();
-    });
-    newItem.querySelector(".card__like").addEventListener("click", (evt) => {
-      evt.target.classList.toggle("card__like_active");
-    });
-    newItem.querySelector(".card__img").addEventListener("click", (evt) => {
-      openCardPopup(initialCards[i].name, initialCards[i].link);
-    });
-    renderCard(listCards, newItem, initialCards[i].name, initialCards[i].link);
+    renderCard(listCards, initialCards[i].name, initialCards[i].link);
   }
 }
 
-function renameProfile(evt) {
-  evt.preventDefault();
+function renameProfile() {
   profileName.textContent = userNameInput.value;
   profileJob.textContent = userJobInput.value;
   closePopup(modalEditProfile);
 }
-
-addForm.addEventListener("submit", (e) => {
-  
-  e.preventDefault();
-  newItem = createCard(addInputName.value, addInputLink.value);
-  newItem.querySelector(".card__trash").addEventListener("click", (evt) => {
-    evt.target.closest(".card").remove();
-  });
-
-  newItem.querySelector(".card__like").addEventListener("click", (evt) => {
-    evt.target.classList.toggle("card__like_active");
-  });
-
-  newItem.querySelector(".card__img").addEventListener("click", (evt) => {
-    openCardPopup(addInputName.value, newItem.querySelector(".card__img").src)
-  });
-
-  renderCard(listCards, newItem, addInputName.value, addInputLink.value);
-});
 
 loadingCards();
 
