@@ -42,6 +42,11 @@ const setEventListeners = (
       checkInputValidity(formElement, inputElement, inputErrorClass);
       toggleButtonState(inputList, buttonElement, inactiveButtonClass);
     });
+    inputElement.addEventListener("keydown", function (evt) {
+      if (evt.key === "Enter" && hasInvalidInput(inputList)) {
+        evt.preventDefault();
+      }
+    });
   });
 };
 
@@ -49,7 +54,6 @@ const enableValidation = (obj) => {
   const formList = Array.from(document.querySelectorAll(`${obj.formSelector}`));
   formList.forEach((formElement) => {
       setEventListeners(formElement, obj.inputSelector, obj.submitButtonSelector, obj.inactiveButtonClass, obj.inputErrorClass);
-      console.log(obj.inputSelector, obj.submitButtonSelector, obj.inactiveButtonClass, obj.inputErrorClass);
   });
 };
 
