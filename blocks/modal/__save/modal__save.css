@@ -8,13 +8,14 @@
   border-radius: 2px;
   cursor: pointer;
   max-width: 358px;
-  margin: 47px 36px 39px 36px;
+  margin: 47px 0 39px;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .modal__save:hover {
@@ -23,7 +24,7 @@
 
 @media screen and (max-width: 1024px) {
   .modal__save {
-    margin: 45px 21px 23px;
+    margin: 45px 0 23px;
     width: 238px;
     height: 46px;
     font-size: 14px;

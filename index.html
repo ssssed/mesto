@@ -41,20 +41,35 @@
             type="button"
             class="modal__close-btn modal-edit__close-btn"
           ></button>
-          <form name="modal__inner" class="modal__inner modal-edit__inner">
+          <form
+            name="modal__inner"
+            class="modal__inner modal-edit__inner"
+            novalidate
+          >
             <input
               type="text"
               name="Имя"
-              id="name"
+              id="inputName"
               placeholder="Имя"
-              class="modal__input"
+              class="modal__input modal-edit__input"
+              minlength="2"
+              maxlenght="40"
+              value="Жак-Ив Кусто"
+              required
             />
+            <span class="modal__input-error" id="inputName-error"></span>
             <input
-              id="job"
+              id="inputJob"
               type="text"
               placeholder="Работа"
-              class="modal__input"
+              class="modal__input modal-edit__input"
+              minlength="2"
+              maxlenght="200"
+              value="Исследователь океана"
+              required
             />
+            <span class="modal__input-error" id="inputJob-error"></span>
+
             <button type="submit" class="modal__save modal-edit__save">
               Сохранить
             </button>
@@ -68,21 +83,35 @@
             type="button"
             class="modal__close-btn modal-add__close-btn"
           ></button>
-          <form name="modal__add" class="modal__inner modal-add__inner">
+          <form
+            name="modal__add"
+            class="modal__inner modal-add__inner"
+            novalidate
+          >
             <input
               type="text"
               name="Название"
-              id="placename"
+              id="inputTitle"
               placeholder="Название"
               class="modal__input modal-add__input"
+              minlength="2"
+              maxlenght="30"
+              required
             />
+            <span class="modal__input-error" id="inputTitle-error"></span>
+
             <input
-              id="imglink"
-              type="text"
+              id="inputLink"
+              type="url"
               placeholder="Ссылка на картинку"
               class="modal__input modal-add__input"
+              required
             />
-            <button type="submit" class="modal__save">Создать</button>
+            <span class="modal__input-error" id="inputLink-error"></span>
+
+            <button type="submit" class="modal__save modal-add__save">
+              Создать
+            </button>
           </form>
         </div>
       </section>
@@ -116,5 +145,6 @@
       </div>
     </section>
     <script src="./scripts/scripts.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

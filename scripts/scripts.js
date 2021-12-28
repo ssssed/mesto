@@ -5,8 +5,8 @@ const editForm = document.querySelector(".modal-edit__inner");
 const closeEditBtn = document.querySelector(".modal-edit__close-btn");
 const closeAddBtn = document.querySelector(".modal-add__close-btn");
 const addBtn = document.querySelector(".profile__add");
-const addInputName = document.getElementById("placename");
-const addInputLink = document.getElementById("imglink");
+const addInputName = document.getElementById("inputTitle");
+const addInputLink = document.getElementById("inputLink");
 const addForm = document.querySelector(".modal-add__inner");
 const template = document.querySelector(".template");
 const listCards = document.querySelector(".elements");
@@ -14,6 +14,7 @@ const modalOpenCard = document.querySelector(".opencard");
 const closeCardBtn = document.querySelector(".opencard__close-btn");
 const modalCardImg = document.querySelector(".opencard__img");
 const modalCardName = document.querySelector(".opencard__title");
+const modals = Array.from(document.querySelectorAll(".modal"));
 const initialCards = [
   {
     name: "Архыз",
@@ -40,9 +41,9 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
-const userNameInput = document.getElementById("name");
+const userNameInput = document.getElementById("inputName");
 const profileName = document.querySelector(".profile__name");
-const userJobInput = document.getElementById("job");
+const userJobInput = document.getElementById("inputJob");
 const profileJob = document.querySelector(".profile__job");
 
 editBtn.addEventListener("click", (evt) => {
@@ -64,6 +65,19 @@ closeEditBtn.addEventListener("click", (evt) => {
 closeAddBtn.addEventListener("click", (evt) => {
   closePopup(modalAddCard);
 });
+
+modals.forEach((modal) => {
+  modal.addEventListener("click", (evt) => {
+  if (evt.target.classList.contains("modal")) {
+    closePopup(modal);
+  }
+  });
+  document.addEventListener("keydown", (evt) => {
+    if (evt.key === "Escape") {
+      closePopup(modal);
+    }
+  })
+})
 
 editForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
@@ -93,10 +107,10 @@ function createCard(title, address) {
   newItem.querySelector(".card__trash").addEventListener("click", (evt) => {
       evt.target.closest(".card").remove();
     });
-    newItem.querySelector(".card__like").addEventListener("click", (evt) => {
+  newItem.querySelector(".card__like").addEventListener("click", (evt) => {
       evt.target.classList.toggle("card__like_active");
     });
-    newItem.querySelector(".card__img").addEventListener("click", (evt) => {
+  newItem.querySelector(".card__img").addEventListener("click", (evt) => {
     openCardPopup(title, address);
   });
   return newItem;
@@ -122,7 +136,6 @@ function loadingCards() {
 function renameProfile() {
   profileName.textContent = userNameInput.value;
   profileJob.textContent = userJobInput.value;
-  closePopup(modalEditProfile);
 }
 
 loadingCards();
