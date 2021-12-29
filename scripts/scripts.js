@@ -5,8 +5,8 @@ const editForm = document.querySelector(".modal-edit__inner");
 const closeEditBtn = document.querySelector(".modal-edit__close-btn");
 const closeAddBtn = document.querySelector(".modal-add__close-btn");
 const addBtn = document.querySelector(".profile__add");
-const addInputName = document.querySelector(".modal-add__input_type_title");
-const addInputLink = document.querySelector(".modal-add__input_type_link");
+const addInputName = document.querySelector(".modal__input_type_title");
+const addInputLink = document.querySelector(".modal__input_type_link");
 const addForm = document.querySelector(".modal-add__inner");
 const template = document.querySelector(".template");
 const listCards = document.querySelector(".elements");
@@ -41,9 +41,9 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
-const userNameInput = document.querySelector(".modal-edit__input_type_name");
+const userNameInput = document.querySelector(".modal__input_type_name");
 const profileName = document.querySelector(".profile__name");
-const userJobInput = document.querySelector(".modal-edit__input_type_job");
+const userJobInput = document.querySelector(".modal__input_type_job");
 const profileJob = document.querySelector(".profile__job");
 
 editBtn.addEventListener("click", (evt) => {
