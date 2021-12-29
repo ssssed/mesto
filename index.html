@@ -11,7 +11,7 @@
       <header class="header">
         <img src="./images/logo.svg" alt="Логотип" class="header__img" />
       </header>
-      <main>
+      <main class="content">
         <section class="profile">
           <div class="profile__content">
             <img
@@ -51,7 +51,7 @@
               name="Имя"
               id="inputName"
               placeholder="Имя"
-              class="modal__input modal-edit__input"
+              class="modal__input modal-edit__input_name"
               minlength="2"
               maxlenght="40"
               value="Жак-Ив Кусто"
@@ -62,7 +62,7 @@
               id="inputJob"
               type="text"
               placeholder="Работа"
-              class="modal__input modal-edit__input"
+              class="modal__input modal-edit__input_job"
               minlength="2"
               maxlenght="200"
               value="Исследователь океана"
@@ -93,7 +93,7 @@
               name="Название"
               id="inputTitle"
               placeholder="Название"
-              class="modal__input modal-add__input"
+              class="modal__input modal-add__input_title"
               minlength="2"
               maxlenght="30"
               required
@@ -104,7 +104,7 @@
               id="inputLink"
               type="url"
               placeholder="Ссылка на картинку"
-              class="modal__input modal-add__input"
+              class="modal__input modal-add__input_link"
               required
             />
             <span class="modal__input-error" id="inputLink-error"></span>

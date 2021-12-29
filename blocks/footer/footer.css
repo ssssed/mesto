@@ -3,6 +3,8 @@
   color: #545454;
   margin: 0 auto;
   padding: 67px 0 60px;
+  flex-shrink: 0;
+  width: 100%;
 }
 
 @media screen and (max-width: 1024px) {
