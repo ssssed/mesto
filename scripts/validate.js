@@ -84,3 +84,12 @@ enableValidation({
   inactiveButtonClass: "modal__save_active",
   inputErrorClass: "modal__input_type_error",
 });
+
+function resetValidation(modal) {
+  const inputList = Array.from(modal.querySelectorAll(".modal__input"));
+  const saveBtn = modal.querySelector(".modal__save");
+  inputList.forEach((input) => {
+    hideInputError(modal, input, "modal__input_type_error");
+  });
+  toggleButtonState(inputList, saveBtn, "modal__save_active");
+}

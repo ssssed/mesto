@@ -47,16 +47,16 @@ const userJobInput = document.querySelector(".modal__input_type_job");
 const profileJob = document.querySelector(".profile__job");
 
 editBtn.addEventListener("click", (evt) => {
-  openPopup(modalEditProfile);
   userNameInput.value = profileName.textContent;
   userJobInput.value = profileJob.textContent;
   resetValidation(modalEditProfile);
+  openPopup(modalEditProfile);
 });
 
 addBtn.addEventListener("click", (evt) => {
+  addForm.reset();
   resetValidation(modalAddCard);
   openPopup(modalAddCard);
-  addForm.reset();
 });
 
 closeEditBtn.addEventListener("click", () => closePopup(modalEditProfile));
@@ -89,17 +89,16 @@ function openPopup(popup) {
 }
 
 function closePopup(popup) {
-  document.removeEventListener("keydown", escapeHandler);
   popup.classList.remove("modal_active");
 }
 
 function createCard(title, address) {
   const newItem = template.content.cloneNode(true).querySelector(".card");
   const newItemTitle = newItem.querySelector(".card__title");
-  const ntwItemImg = newItem.querySelector(".card__img");
+  const newItemImg = newItem.querySelector(".card__img");
   newItemTitle.textContent = title;
-  ntwItemImg.alt = title;
-  ntwItemImg.src = address;
+  newItemImg.alt = title;
+  newItemImg.src = address;
   newItemDelete = newItem.querySelector(".card__trash");
   newItemDelete.addEventListener("click", (evt) => {
     evt.target.closest(".card").remove();
@@ -108,7 +107,7 @@ function createCard(title, address) {
   newItemLike.addEventListener("click", (evt) => {
     evt.target.classList.toggle("card__like_active");
   });
-  ntwItemImg.addEventListener("click", () => openCardPopup(title, address));
+  newItemImg.addEventListener("click", () => openCardPopup(title, address));
   return newItem;
 }
 
@@ -140,25 +139,11 @@ closeCardBtn.addEventListener("click", (evt) => {
   closePopup(modalOpenCard);
 });
 
-function resetValidation(modal) {
-  const inputList = Array.from(modal.querySelectorAll(".modal__input"));
-  const saveBtn = modal.querySelector(".modal__save");
-  inputList.forEach((input) => {
-    const inputErrorSpan = modal.querySelector(`#${input.id}-error`);
-    input.classList.remove("modal__input_type_error");
-    inputErrorSpan.textContent = "";
-  });
-  if (inputList.some((input) => !input.validity.valid))
-    saveBtn.classList.add("modal__save_active");
-  else saveBtn.classList.remove("modal__save_active");
-}
-
-let escapeHandler = (evt) => {};
-
-function addEscapeHandler(popup) {
+function addEscapeHandler(modal) {
   escapeHandler = (evt) => {
     if (evt.key === "Escape") {
-      closePopup(popup);
+      closePopup(modal);
+      document.removeEventListener("keydown", escapeHandler);
     }
   };
   return escapeHandler;
