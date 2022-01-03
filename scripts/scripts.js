@@ -84,11 +84,12 @@ addForm.addEventListener("submit", (evt) => {
 });
 
 function openPopup(popup) {
-  document.addEventListener("keydown", addEscapeHandler(popup));
   popup.classList.add("modal_active");
+  document.addEventListener("keydown", escapeHadler);
 }
 
 function closePopup(popup) {
+  document.removeEventListener("keydown", escapeHadler);
   popup.classList.remove("modal_active");
 }
 
@@ -139,12 +140,7 @@ closeCardBtn.addEventListener("click", (evt) => {
   closePopup(modalOpenCard);
 });
 
-function addEscapeHandler(modal) {
-  escapeHandler = (evt) => {
-    if (evt.key === "Escape") {
-      closePopup(modal);
-      document.removeEventListener("keydown", escapeHandler);
-    }
-  };
-  return escapeHandler;
+function escapeHadler(evt) {
+  const popup = document.querySelector(".modal_active");
+  if (evt.key === "Escape") closePopup(popup);
 }
