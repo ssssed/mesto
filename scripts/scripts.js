@@ -1,4 +1,4 @@
-import { Card } from "./card.js";
+import { Card } from "./Card.js";
 const editBtn = document.querySelector(".profile__edit");
 const modalEditProfile = document.querySelector(".modal-edit");
 const modalAddCard = document.querySelector(".modal-add");
@@ -48,8 +48,9 @@ const userJobInput = document.querySelector(".modal__input_type_job");
 const profileJob = document.querySelector(".profile__job");
 import { FormValidator } from "./FormValidator.js";
 const formLists = document.querySelectorAll(".modal__inner");
+const formValidators = {};
 
-formLists.forEach((formList) => {
+formLists.forEach((formElement) => {
   const formValidator = new FormValidator(
     {
       formSelector: ".modal__inner",
@@ -58,28 +59,34 @@ formLists.forEach((formList) => {
       inactiveButtonClass: "modal__save_active",
       inputErrorClass: "modal__input_type_error",
     },
-    formList
+    formElement
   );
-  formList.formValidator = formValidator;
-  formList.formValidator.enableValidation();
+  const formName = formElement.name;
+  formValidators[formName] = formValidator;
+  formValidators[formName].enableValidation();
 });
 
 editBtn.addEventListener("click", (evt) => {
   userNameInput.value = profileName.textContent;
   userJobInput.value = profileJob.textContent;
-  editForm.formValidator._resetValidation();
+  formValidators[editForm.name].resetValidation();
   openPopup(modalEditProfile);
 });
 
 addBtn.addEventListener("click", (evt) => {
   addForm.reset();
-  addForm.formValidator._resetValidation();
+  formValidators[addForm.name].resetValidation();
   openPopup(modalAddCard);
 });
 
 closeEditBtn.addEventListener("click", () => closePopup(modalEditProfile));
 
 closeAddBtn.addEventListener("click", () => closePopup(modalAddCard));
+
+function createCard(title, link, templateClass) {
+  const newCard = new Card({ name: title, link: link }, templateClass);
+  return newCard.generateCard();
+}
 
 modals.forEach((modal) => {
   modal.addEventListener("click", (evt) => {
@@ -97,23 +104,19 @@ editForm.addEventListener("submit", (evt) => {
 
 addForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  const newCard = new Card(
-    { name: addInputName.value, link: addInputLink.value },
-    ".template-card"
+  listCards.prepend(
+    createCard(addInputName.value, addInputLink.value, ".template-card")
   );
-  const cardElement = newCard.generateCard();
-
-  listCards.prepend(cardElement);
   closePopup(modalAddCard);
 });
 
 function openPopup(popup) {
   popup.classList.add("modal_active");
-  document.addEventListener("keydown", escapeHadler);
+  document.addEventListener("keydown", handleEscapeKey);
 }
 
 function closePopup(popup) {
-  document.removeEventListener("keydown", escapeHadler);
+  document.removeEventListener("keydown", handleEscapeKey);
   popup.classList.remove("modal_active");
 }
 
@@ -133,9 +136,11 @@ closeCardBtn.addEventListener("click", (evt) => {
   closePopup(modalOpenCard);
 });
 
-function escapeHadler(evt) {
-  const popup = document.querySelector(".modal_active");
-  if (evt.key === "Escape") closePopup(popup);
+function handleEscapeKey(evt) {
+  if (evt.key === "Escape") {
+    const popup = document.querySelector(".modal_active");
+    closePopup(popup);
+  }
 }
 
 initialCards.forEach((item) => {

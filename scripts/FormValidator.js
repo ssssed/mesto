@@ -47,10 +47,7 @@ class FormValidator {
     this._errorElement.textContent = "";
   }
 
-  _resetValidation() {
-    this._inputList = Array.from(
-      this._form.parentNode.querySelectorAll(this._inputSelector)
-    );
+  resetValidation() {
     this._inputList.forEach((input) => {
       this._hideInputError(input);
     });
