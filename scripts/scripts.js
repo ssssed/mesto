@@ -144,10 +144,7 @@ function handleEscapeKey(evt) {
 }
 
 initialCards.forEach((item) => {
-  const card = new Card(item, ".template-card");
-  const cardElement = card.generateCard();
-
-  listCards.prepend(cardElement);
+  listCards.append(createCard(item.name, item.link, ".template-card"));
 });
 
 export { openCardPopup };
