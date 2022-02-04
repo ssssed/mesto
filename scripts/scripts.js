@@ -1,6 +1,7 @@
 import { Card } from "./Card.js";
 import { Section } from "./Section.js";
 import { Popup } from "./Popup.js";
+import { PopupWithForm } from "./PopupWithForm.js";
 const editBtn = document.querySelector(".profile__edit");
 const modalEditProfile = document.querySelector(".modal-edit");
 const modalAddCard = document.querySelector(".modal-add");
@@ -67,8 +68,10 @@ renderCards.renderItems();
 
 const modalAdd = new Popup(".modal-add");
 const modalEdit = new Popup(".modal-edit");
+const openCard = new Popup(".opencard");
 modalAdd.setEventListeners();
 modalEdit.setEventListeners();
+openCard.setEventListeners();
 
 formLists.forEach((formElement) => {
   const formValidator = new FormValidator(
@@ -112,32 +115,31 @@ function createCard(title, link, templateClass) {
   });
 });
 */
-/*editForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  renameProfile();
-  closePopup(modalEditProfile);
-});
-
-addForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  renderCards.addItem(
-    createCard(addInputName.value, addInputLink.value, ".template-card")
-  );
-  listCards.closePopup(modalAddCard);
-});
-*/
-// function openPopup(popup) {
-//   popup.classList.add("modal_active");
-//   document.addEventListener("keydown", handleEscapeKey);
-// }
-
-// function closePopup(popup) {
-//   document.removeEventListener("keydown", handleEscapeKey);
-//   popup.classList.remove("modal_active");
-// }
+const editPopupWithForm = new PopupWithForm(
+  ".modal-edit__inner",
+  ".modal-edit",
+  (evt) => {
+    evt.preventDefault();
+    renameProfile();
+    modalEdit.close();
+  }
+);
+editPopupWithForm.setEventListeners();
+const AddPopupWithForm = new PopupWithForm(
+  ".modal-add__inner",
+  ".modal-add",
+  (evt) => {
+    evt.preventDefault();
+    renderCards.addItem(
+      createCard(addInputName.value, addInputLink.value, ".template-card")
+    );
+    modalAdd.close();
+  }
+);
+AddPopupWithForm.setEventListeners();
 
 function openCardPopup(name, link) {
-  openPopup(modalOpenCard);
+  openCard.open();
   modalCardImg.src = link;
   modalCardImg.alt = name;
   modalCardName.textContent = name;
@@ -146,17 +148,6 @@ function openCardPopup(name, link) {
 function renameProfile() {
   profileName.textContent = userNameInput.value;
   profileJob.textContent = userJobInput.value;
-}
-
-/*closeCardBtn.addEventListener("click", (evt) => {
-  closePopup(modalOpenCard);
-});
-*/
-function handleEscapeKey(evt) {
-  if (evt.key === "Escape") {
-    const popup = document.querySelector(".modal_active");
-    closePopup(popup);
-  }
 }
 
 export { openCardPopup };
