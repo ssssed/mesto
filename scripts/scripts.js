@@ -1,4 +1,6 @@
 import { Card } from "./Card.js";
+import { Section } from "./Section.js";
+import { Popup } from "./Popup.js";
 const editBtn = document.querySelector(".profile__edit");
 const modalEditProfile = document.querySelector(".modal-edit");
 const modalAddCard = document.querySelector(".modal-add");
@@ -50,6 +52,24 @@ import { FormValidator } from "./FormValidator.js";
 const formLists = document.querySelectorAll(".modal__inner");
 const formValidators = {};
 
+const renderCards = new Section(
+  {
+    data: initialCards,
+    render: (item) => {
+      const cardElement = createCard(item.name, item.link, ".template-card");
+      renderCards.addItem(cardElement);
+    },
+  },
+  ".elements"
+);
+
+renderCards.renderItems();
+
+const modalAdd = new Popup(".modal-add");
+const modalEdit = new Popup(".modal-edit");
+modalAdd.setEventListeners();
+modalEdit.setEventListeners();
+
 formLists.forEach((formElement) => {
   const formValidator = new FormValidator(
     {
@@ -70,33 +90,29 @@ editBtn.addEventListener("click", (evt) => {
   userNameInput.value = profileName.textContent;
   userJobInput.value = profileJob.textContent;
   formValidators[editForm.name].resetValidation();
-  openPopup(modalEditProfile);
+  modalEdit.open(modalEditProfile);
 });
 
 addBtn.addEventListener("click", (evt) => {
   addForm.reset();
   formValidators[addForm.name].resetValidation();
-  openPopup(modalAddCard);
+  modalAdd.open(modalAddCard);
 });
-
-closeEditBtn.addEventListener("click", () => closePopup(modalEditProfile));
-
-closeAddBtn.addEventListener("click", () => closePopup(modalAddCard));
 
 function createCard(title, link, templateClass) {
   const newCard = new Card({ name: title, link: link }, templateClass);
   return newCard.generateCard();
 }
 
-modals.forEach((modal) => {
+/*modals.forEach((modal) => {
   modal.addEventListener("click", (evt) => {
     if (evt.target.classList.contains("modal")) {
       closePopup(modal);
     }
   });
 });
-
-editForm.addEventListener("submit", (evt) => {
+*/
+/*editForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   renameProfile();
   closePopup(modalEditProfile);
@@ -104,21 +120,21 @@ editForm.addEventListener("submit", (evt) => {
 
 addForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  listCards.prepend(
+  renderCards.addItem(
     createCard(addInputName.value, addInputLink.value, ".template-card")
   );
-  closePopup(modalAddCard);
+  listCards.closePopup(modalAddCard);
 });
+*/
+// function openPopup(popup) {
+//   popup.classList.add("modal_active");
+//   document.addEventListener("keydown", handleEscapeKey);
+// }
 
-function openPopup(popup) {
-  popup.classList.add("modal_active");
-  document.addEventListener("keydown", handleEscapeKey);
-}
-
-function closePopup(popup) {
-  document.removeEventListener("keydown", handleEscapeKey);
-  popup.classList.remove("modal_active");
-}
+// function closePopup(popup) {
+//   document.removeEventListener("keydown", handleEscapeKey);
+//   popup.classList.remove("modal_active");
+// }
 
 function openCardPopup(name, link) {
   openPopup(modalOpenCard);
@@ -132,19 +148,15 @@ function renameProfile() {
   profileJob.textContent = userJobInput.value;
 }
 
-closeCardBtn.addEventListener("click", (evt) => {
+/*closeCardBtn.addEventListener("click", (evt) => {
   closePopup(modalOpenCard);
 });
-
+*/
 function handleEscapeKey(evt) {
   if (evt.key === "Escape") {
     const popup = document.querySelector(".modal_active");
     closePopup(popup);
   }
 }
-
-initialCards.forEach((item) => {
-  listCards.append(createCard(item.name, item.link, ".template-card"));
-});
 
 export { openCardPopup };
