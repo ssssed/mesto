@@ -1,8 +1,9 @@
-import { Card } from "./Card.js";
-import { Section } from "./Section.js";
-import { PopupWithForm } from "./PopupWithForm.js";
-import { PopupWithImage } from "./PopupWithImage.js";
-import { UserInfo } from "./UserInfo.js";
+import "./index.css";
+import { Card } from "../components/Card.js";
+import { Section } from "../components/Section.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { UserInfo } from "../components/UserInfo.js";
 const editBtn = document.querySelector(".profile__edit");
 const editForm = document.querySelector(".modal-edit__inner");
 const addBtn = document.querySelector(".profile__add");
@@ -37,7 +38,7 @@ const initialCards = [
 ];
 const userNameInput = document.querySelector(".modal__input_type_name");
 const userJobInput = document.querySelector(".modal__input_type_job");
-import { FormValidator } from "./FormValidator.js";
+import { FormValidator } from "../components/FormValidator.js";
 const formLists = document.querySelectorAll(".modal__inner");
 const formValidators = {};
 
