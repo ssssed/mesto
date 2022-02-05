@@ -2,6 +2,7 @@ import { Card } from "./Card.js";
 import { Section } from "./Section.js";
 import { Popup } from "./Popup.js";
 import { PopupWithForm } from "./PopupWithForm.js";
+import { PopupWithImage } from "./PopupWithImage.js";
 const editBtn = document.querySelector(".profile__edit");
 const modalEditProfile = document.querySelector(".modal-edit");
 const modalAddCard = document.querySelector(".modal-add");
@@ -53,6 +54,9 @@ import { FormValidator } from "./FormValidator.js";
 const formLists = document.querySelectorAll(".modal__inner");
 const formValidators = {};
 
+const popupWithImage = new PopupWithImage(".opencard");
+popupWithImage.setEventListeners();
+
 const renderCards = new Section(
   {
     data: initialCards,
@@ -66,12 +70,35 @@ const renderCards = new Section(
 
 renderCards.renderItems();
 
-const modalAdd = new Popup(".modal-add");
-const modalEdit = new Popup(".modal-edit");
-const openCard = new Popup(".opencard");
-modalAdd.setEventListeners();
-modalEdit.setEventListeners();
-openCard.setEventListeners();
+// const modalAdd = new Popup(".modal-add");
+// const modalEdit = new Popup(".modal-edit");
+// const openCard = new Popup(".opencard");
+// modalAdd.setEventListeners();
+// modalEdit.setEventListeners();
+// openCard.setEventListeners();
+
+const editPopupWithForm = new PopupWithForm(
+  ".modal-edit__inner",
+  ".modal-edit",
+  (evt) => {
+    evt.preventDefault();
+    renameProfile();
+    editPopupWithForm.close();
+  }
+);
+editPopupWithForm.setEventListeners();
+const AddPopupWithForm = new PopupWithForm(
+  ".modal-add__inner",
+  ".modal-add",
+  (evt) => {
+    evt.preventDefault();
+    renderCards.addItem(
+      createCard(addInputName.value, addInputLink.value, ".template-card")
+    );
+    AddPopupWithForm.close();
+  }
+);
+AddPopupWithForm.setEventListeners();
 
 formLists.forEach((formElement) => {
   const formValidator = new FormValidator(
@@ -93,61 +120,22 @@ editBtn.addEventListener("click", (evt) => {
   userNameInput.value = profileName.textContent;
   userJobInput.value = profileJob.textContent;
   formValidators[editForm.name].resetValidation();
-  modalEdit.open(modalEditProfile);
+  editPopupWithForm.open();
 });
 
 addBtn.addEventListener("click", (evt) => {
-  addForm.reset();
   formValidators[addForm.name].resetValidation();
-  modalAdd.open(modalAddCard);
+  AddPopupWithForm.open();
 });
 
 function createCard(title, link, templateClass) {
-  const newCard = new Card({ name: title, link: link }, templateClass);
-  return newCard.generateCard();
-}
-
-/*modals.forEach((modal) => {
-  modal.addEventListener("click", (evt) => {
-    if (evt.target.classList.contains("modal")) {
-      closePopup(modal);
-    }
+  const newCard = new Card({ name: title, link: link }, templateClass, () => {
+    popupWithImage.open(title, link);
   });
-});
-*/
-const editPopupWithForm = new PopupWithForm(
-  ".modal-edit__inner",
-  ".modal-edit",
-  (evt) => {
-    evt.preventDefault();
-    renameProfile();
-    modalEdit.close();
-  }
-);
-editPopupWithForm.setEventListeners();
-const AddPopupWithForm = new PopupWithForm(
-  ".modal-add__inner",
-  ".modal-add",
-  (evt) => {
-    evt.preventDefault();
-    renderCards.addItem(
-      createCard(addInputName.value, addInputLink.value, ".template-card")
-    );
-    modalAdd.close();
-  }
-);
-AddPopupWithForm.setEventListeners();
-
-function openCardPopup(name, link) {
-  openCard.open();
-  modalCardImg.src = link;
-  modalCardImg.alt = name;
-  modalCardName.textContent = name;
+  return newCard.generateCard();
 }
 
 function renameProfile() {
   profileName.textContent = userNameInput.value;
   profileJob.textContent = userJobInput.value;
 }
-
-export { openCardPopup };
