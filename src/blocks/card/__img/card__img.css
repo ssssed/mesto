@@ -4,3 +4,7 @@
   object-fit: cover;
   filter: brightness(80%);
 }
+
+.card__img:hover {
+  opacity: 0.95;
+}

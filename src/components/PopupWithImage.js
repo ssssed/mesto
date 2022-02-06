@@ -6,8 +6,7 @@ export class PopupWithImage extends Popup {
   }
 
   open(name, link) {
-    this._popup.classList.add("modal_active");
-    document.addEventListener("keydown", this._handleEscapeKey.bind(this));
+    super.open();
     const cardLink = document.querySelector(".opencard__img");
     const cardTitle = document.querySelector(".opencard__title");
     cardTitle.textContent = name;

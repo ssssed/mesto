@@ -5,6 +5,9 @@ class FormValidator {
     this._inactiveButtonClass = data.inactiveButtonClass;
     this._inputErrorClass = data.inputErrorClass;
     this._form = form;
+    this._inputList = Array.from(
+      this._form.querySelectorAll(this._inputSelector)
+    );
   }
 
   enableValidation() {
@@ -55,9 +58,6 @@ class FormValidator {
   }
 
   _setEventListeners() {
-    this._inputList = Array.from(
-      this._form.querySelectorAll(this._inputSelector)
-    );
     this._buttonElement = this._form.querySelector(this._submitButtonSelector);
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
