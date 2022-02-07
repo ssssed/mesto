@@ -14,7 +14,6 @@ export class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this._popup.classList.remove("modal_active");
     this._popupForm.reset();
   }
 
