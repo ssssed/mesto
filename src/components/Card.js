@@ -1,7 +1,8 @@
 class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor(data, cardSelector, countLikes, handleCardClick) {
     this._title = data.name;
     this._image = data.link;
+    this._countLikes = countLikes;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -16,6 +17,14 @@ class Card {
 
   _like() {
     this._likeCard.classList.toggle("card__like_active");
+    this._countLikeElement = this._element.querySelector(".card__like-count");
+    if (this._likeCard.classList.contains("card__like_active")) {
+      this._countLikes.push("Sed");
+      this._countLikeElement.textContent = this._countLikes.length;
+    } else {
+      this._countLikes.pop("Sed");
+      this._countLikeElement.textContent = this._countLikes.length;
+    }
   }
 
   _removeCard() {
@@ -27,6 +36,7 @@ class Card {
     this._cardImg = this._element.querySelector(".card__img");
     this._likeCard = this._element.querySelector(".card__like");
     this._deleteCard = this._element.querySelector(".card__trash");
+    this._countLikeElement = this._element.querySelector(".card__like-count");
     this._setEventListeners();
     this._element.querySelector(".card__title").textContent = this._title;
     this._cardImg.src = this._image;

@@ -5,6 +5,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { FormValidator } from "../components/FormValidator.js";
+import { Api } from "../components/Api.js";
 import {
   editBtn,
   editForm,
@@ -20,12 +21,16 @@ import {
 } from "../utils/constants.js";
 const popupWithImage = new PopupWithImage(".opencard");
 popupWithImage.setEventListeners();
-
 const renderCards = new Section(
   {
     data: initialCards,
     render: (item) => {
-      const cardElement = createCard(item.name, item.link, ".template-card");
+      const cardElement = createCard(
+        item.name,
+        item.link,
+        item.likes,
+        ".template-card"
+      );
       renderCards.addItem(cardElement);
     },
   },
@@ -38,6 +43,18 @@ const userInfo = new UserInfo({
   userName: ".profile__name",
   userJob: ".profile__job",
 });
+
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort36/cards",
+  profileUrl: "https://nomoreparties.co/v1/cohort36/users/me",
+  headers: {
+    authorization: "5b005959-c919-4ebc-988e-c1e91f53093c",
+    "Content-Type": "application/json",
+  },
+});
+
+api.renderCard(".elements", ".template-card");
+api.renderProfile(userInfo);
 
 const editPopupWithForm = new PopupWithForm(
   ".modal-edit__inner",
@@ -54,9 +71,15 @@ const addPopupWithForm = new PopupWithForm(
   ".modal-add",
   (evt) => {
     evt.preventDefault();
+    initialCards.push({
+      name: addInputName.value,
+      link: addInputLink.value,
+      likes: [],
+    });
     renderCards.addItem(
-      createCard(addInputName.value, addInputLink.value, ".template-card")
+      createCard(addInputName.value, addInputLink.value, [], ".template-card")
     );
+    api.postCard(addInputName.value, addInputLink.value); // Выкладываю на сервер картинку
     addPopupWithForm.close();
   }
 );
@@ -90,10 +113,15 @@ addBtn.addEventListener("click", (evt) => {
   formValidators[addForm.name].resetValidation();
   addPopupWithForm.open();
 });
-
-function createCard(title, link, templateClass) {
-  const newCard = new Card({ name: title, link: link }, templateClass, () => {
-    popupWithImage.open(title, link);
-  });
+export function createCard(title, link, countLike, templateClass) {
+  // console.log(countLike.length);
+  const newCard = new Card(
+    { name: title, link: link },
+    templateClass,
+    countLike,
+    () => {
+      popupWithImage.open(title, link);
+    }
+  );
   return newCard.generateCard();
 }
