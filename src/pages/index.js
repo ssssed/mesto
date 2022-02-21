@@ -19,6 +19,7 @@ import {
   formLists,
   formValidators,
 } from "../utils/constants.js";
+
 const popupWithImage = new PopupWithImage(".opencard");
 popupWithImage.setEventListeners();
 const renderCards = new Section(

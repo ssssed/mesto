@@ -37,6 +37,7 @@ class Card {
     this._likeCard = this._element.querySelector(".card__like");
     this._deleteCard = this._element.querySelector(".card__trash");
     this._countLikeElement = this._element.querySelector(".card__like-count");
+    this._countLikeElement.textContent = this._countLikes.length;
     this._setEventListeners();
     this._element.querySelector(".card__title").textContent = this._title;
     this._cardImg.src = this._image;

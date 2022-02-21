@@ -15,9 +15,7 @@ export class Api {
       .then((res) => res.json())
       .then((result) => {
         result.forEach((element) => {
-          //   console.log(element.likes.length);
           const allCards = document.querySelector(selector);
-          //   countLikeElement.textContent = `${element.likes.length}`;
           const card = createCard(
             element.name,
             element.link,
