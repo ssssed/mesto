@@ -18,7 +18,29 @@ import {
   userJobInput,
   formLists,
   formValidators,
+  deliteModal,
+  deleteModalBtn,
 } from "../utils/constants.js";
+
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort36/cards",
+  profileUrl: "https://nomoreparties.co/v1/cohort36/users/me",
+  headers: {
+    authorization: "5b005959-c919-4ebc-988e-c1e91f53093c",
+    "Content-Type": "application/json",
+  },
+});
+
+const userInfo = new UserInfo({
+  userName: ".profile__name",
+  userJob: ".profile__job",
+});
+
+api.renderProfile().then((result) => {
+  userInfo.setUserInfo(result.name, result.about, result._id);
+  userInfo.getUserInfo();
+  api.renderCard(".elements", ".template-card");
+});
 
 const popupWithImage = new PopupWithImage(".opencard");
 popupWithImage.setEventListeners();
@@ -30,7 +52,8 @@ const renderCards = new Section(
         item.name,
         item.link,
         item.likes,
-        ".template-card"
+        ".template-card",
+        userInfo.getUserInfo
       );
       renderCards.addItem(cardElement);
     },
@@ -39,23 +62,6 @@ const renderCards = new Section(
 );
 
 renderCards.renderItems();
-
-const userInfo = new UserInfo({
-  userName: ".profile__name",
-  userJob: ".profile__job",
-});
-
-const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort36/cards",
-  profileUrl: "https://nomoreparties.co/v1/cohort36/users/me",
-  headers: {
-    authorization: "5b005959-c919-4ebc-988e-c1e91f53093c",
-    "Content-Type": "application/json",
-  },
-});
-
-api.renderCard(".elements", ".template-card");
-api.renderProfile(userInfo);
 
 const editPopupWithForm = new PopupWithForm(
   ".modal-edit__inner",
@@ -78,7 +84,13 @@ const addPopupWithForm = new PopupWithForm(
       likes: [],
     });
     renderCards.addItem(
-      createCard(addInputName.value, addInputLink.value, [], ".template-card")
+      createCard(
+        addInputName.value,
+        addInputLink.value,
+        [],
+        ".template-card",
+        userInfo.getUserInfo().id
+      )
     );
     api.postCard(addInputName.value, addInputLink.value); // Выкладываю на сервер картинку
     addPopupWithForm.close();
@@ -114,12 +126,13 @@ addBtn.addEventListener("click", (evt) => {
   formValidators[addForm.name].resetValidation();
   addPopupWithForm.open();
 });
-export function createCard(title, link, countLike, templateClass) {
+export function createCard(title, link, countLike, templateClass, id) {
   // console.log(countLike.length);
   const newCard = new Card(
     { name: title, link: link },
     templateClass,
     countLike,
+    id,
     () => {
       popupWithImage.open(title, link);
     }

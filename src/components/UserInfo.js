@@ -8,11 +8,13 @@ export class UserInfo {
     return {
       userName: this._userName.textContent,
       userDescription: this._userInfo.textContent,
+      id: this.id,
     };
   }
 
-  setUserInfo(name, description) {
+  setUserInfo(name, description, userId) {
     this._userName.textContent = name;
     this._userInfo.textContent = description;
+    this.id = userId;
   }
 }

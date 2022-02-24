@@ -7,38 +7,39 @@ export class Api {
   }
 
   renderCard(selector, templateClass) {
-    fetch(this._baseUrl, {
+    return fetch(this._baseUrl, {
       headers: {
         authorization: this._authorization,
       },
     })
       .then((res) => res.json())
       .then((result) => {
+        const allCards = document.querySelector(selector);
         result.forEach((element) => {
-          const allCards = document.querySelector(selector);
           const card = createCard(
             element.name,
             element.link,
             element.likes,
-            templateClass
+            templateClass,
+            element.owner._id
           );
           allCards.append(card);
         });
       });
   }
 
-  renderProfile(userInfo) {
-    fetch(this._profileUrl, {
+  renderProfile() {
+    return fetch(this._profileUrl, {
       headers: {
         authorization: this._authorization,
       },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        userInfo.setUserInfo(result.name, result.about);
-      });
+    }).then((res) => res.json());
+    // .then((result) => {
+    //   this.id = result._id;
+    //   userInfo.setUserInfo(result.name, result.about);
+    // });
   }
-
+  // Проверить данные, что они получены
   postCard(title, link) {
     fetch(this._baseUrl, {
       method: "POST",

@@ -1,9 +1,14 @@
+import { Popup } from "../components/Popup.js";
+import { deleteModalBtn, modalDeleteCloseBtn } from "../utils/constants.js";
 class Card {
-  constructor(data, cardSelector, countLikes, handleCardClick) {
+  constructor(data, cardSelector, countLikes, id, handleCardClick) {
     this._title = data.name;
     this._image = data.link;
     this._countLikes = countLikes;
     this._cardSelector = cardSelector;
+    // console.log(data, cardSelector, countLikes, id, handleCardClick);
+    this._id = id;
+    this._myId = "9de8f666b5ac60e0da5e7796";
     this._handleCardClick = handleCardClick;
   }
 
@@ -36,6 +41,8 @@ class Card {
     this._cardImg = this._element.querySelector(".card__img");
     this._likeCard = this._element.querySelector(".card__like");
     this._deleteCard = this._element.querySelector(".card__trash");
+    // console.log(this);
+    if (this._id !== this._myId) this._deleteCard.remove();
     this._countLikeElement = this._element.querySelector(".card__like-count");
     this._countLikeElement.textContent = this._countLikes.length;
     this._setEventListeners();
@@ -55,7 +62,17 @@ class Card {
     });
 
     this._deleteCard.addEventListener("click", () => {
-      this._removeCard();
+      const popup = new Popup(".modal-delete");
+      popup.open();
+
+      deleteModalBtn.addEventListener("click", () => {
+        this._removeCard();
+        popup.close();
+      });
+
+      modalDeleteCloseBtn.addEventListener("click", () => {
+        popup.close();
+      });
     });
   }
 }
