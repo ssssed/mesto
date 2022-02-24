@@ -1,4 +1,3 @@
-import { createCard } from "../pages/index.js";
 export class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
@@ -6,26 +5,12 @@ export class Api {
     this._authorization = options.headers.authorization;
   }
 
-  renderCard(selector, templateClass) {
+  getCards() {
     return fetch(this._baseUrl, {
       headers: {
         authorization: this._authorization,
       },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        const allCards = document.querySelector(selector);
-        result.forEach((element) => {
-          const card = createCard(
-            element.name,
-            element.link,
-            element.likes,
-            templateClass,
-            element.owner._id
-          );
-          allCards.append(card);
-        });
-      });
+    }).then((res) => res.json());
   }
 
   renderProfile() {
@@ -34,14 +19,10 @@ export class Api {
         authorization: this._authorization,
       },
     }).then((res) => res.json());
-    // .then((result) => {
-    //   this.id = result._id;
-    //   userInfo.setUserInfo(result.name, result.about);
-    // });
   }
   // Проверить данные, что они получены
   postCard(title, link) {
-    fetch(this._baseUrl, {
+    return fetch(this._baseUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,5 +33,39 @@ export class Api {
         link: link,
       }),
     }).then((res) => res.json());
+  }
+
+  deleteCard(id) {
+    fetch(`https://mesto.nomoreparties.co/v1/cohort36/cards/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: this._authorization,
+      },
+    }).then((res) => res.json());
+  }
+
+  putLike(id) {
+    return fetch(
+      `https://mesto.nomoreparties.co/v1/cohort36/cards/${id}/likes`,
+      {
+        headers: {
+          authorization: this._authorization,
+        },
+        method: "PUT",
+      }
+    ).then((res) => res.json());
+  }
+
+  deleteLike(id) {
+    return fetch(
+      `https://mesto.nomoreparties.co/v1/cohort36/cards/${id}/likes`,
+      {
+        headers: {
+          authorization: this._authorization,
+        },
+        method: "DELETE",
+      }
+    ).then((res) => res.json());
   }
 }

@@ -39,29 +39,26 @@ const userInfo = new UserInfo({
 api.renderProfile().then((result) => {
   userInfo.setUserInfo(result.name, result.about, result._id);
   userInfo.getUserInfo();
-  api.renderCard(".elements", ".template-card");
+  api.getCards();
 });
 
 const popupWithImage = new PopupWithImage(".opencard");
 popupWithImage.setEventListeners();
 const renderCards = new Section(
   {
-    data: initialCards,
+    data: api.getCards(),
     render: (item) => {
       const cardElement = createCard(
-        item.name,
-        item.link,
-        item.likes,
+        item,
         ".template-card",
-        userInfo.getUserInfo
+        userInfo.getUserInfo().id,
+        api
       );
       renderCards.addItem(cardElement);
     },
   },
   ".elements"
 );
-
-renderCards.renderItems();
 
 const editPopupWithForm = new PopupWithForm(
   ".modal-edit__inner",
@@ -76,26 +73,21 @@ editPopupWithForm.setEventListeners();
 const addPopupWithForm = new PopupWithForm(
   ".modal-add__inner",
   ".modal-add",
-  (evt) => {
-    evt.preventDefault();
-    initialCards.push({
-      name: addInputName.value,
-      link: addInputLink.value,
-      likes: [],
-    });
-    renderCards.addItem(
-      createCard(
-        addInputName.value,
-        addInputLink.value,
-        [],
+  (data) => {
+    api.postCard(data.inputTitle, data.inputLink).then((res) => {
+      const card = createCard(
+        res,
         ".template-card",
-        userInfo.getUserInfo().id
-      )
-    );
-    api.postCard(addInputName.value, addInputLink.value); // Выкладываю на сервер картинку
+        userInfo.getUserInfo().id,
+        api
+      );
+      renderCards.addItem(card, "new");
+    });
     addPopupWithForm.close();
   }
 );
+
+renderCards.renderItems();
 addPopupWithForm.setEventListeners();
 
 formLists.forEach((formElement) => {
@@ -126,16 +118,9 @@ addBtn.addEventListener("click", (evt) => {
   formValidators[addForm.name].resetValidation();
   addPopupWithForm.open();
 });
-export function createCard(title, link, countLike, templateClass, id) {
-  // console.log(countLike.length);
-  const newCard = new Card(
-    { name: title, link: link },
-    templateClass,
-    countLike,
-    id,
-    () => {
-      popupWithImage.open(title, link);
-    }
-  );
+export function createCard(data, templateClass, id, api) {
+  const newCard = new Card(data, templateClass, id, api, () => {
+    popupWithImage.open(data.name, data.link);
+  });
   return newCard.generateCard();
 }

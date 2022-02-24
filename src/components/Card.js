@@ -1,14 +1,15 @@
 import { Popup } from "../components/Popup.js";
 import { deleteModalBtn, modalDeleteCloseBtn } from "../utils/constants.js";
 class Card {
-  constructor(data, cardSelector, countLikes, id, handleCardClick) {
+  constructor(data, cardSelector, id, api, handleCardClick) {
     this._title = data.name;
     this._image = data.link;
-    this._countLikes = countLikes;
+    this._likes = data.likes;
+    this._owner = data.owner;
+    this._cardId = data._id;
     this._cardSelector = cardSelector;
-    // console.log(data, cardSelector, countLikes, id, handleCardClick);
-    this._id = id;
-    this._myId = "9de8f666b5ac60e0da5e7796";
+    this._myId = id;
+    this._api = api;
     this._handleCardClick = handleCardClick;
   }
 
@@ -24,15 +25,16 @@ class Card {
     this._likeCard.classList.toggle("card__like_active");
     this._countLikeElement = this._element.querySelector(".card__like-count");
     if (this._likeCard.classList.contains("card__like_active")) {
-      this._countLikes.push("Sed");
-      this._countLikeElement.textContent = this._countLikes.length;
+      this._api.putLike(this._cardId);
+      this._countLikeElement.textContent++;
     } else {
-      this._countLikes.pop("Sed");
-      this._countLikeElement.textContent = this._countLikes.length;
+      this._api.deleteLike(this._cardId);
+      this._countLikeElement.textContent--;
     }
   }
 
-  _removeCard() {
+  _removeCard(id) {
+    this._api.deleteCard(id);
     this._element.remove();
   }
 
@@ -41,10 +43,13 @@ class Card {
     this._cardImg = this._element.querySelector(".card__img");
     this._likeCard = this._element.querySelector(".card__like");
     this._deleteCard = this._element.querySelector(".card__trash");
-    // console.log(this);
-    if (this._id !== this._myId) this._deleteCard.remove();
+    if (this._owner._id !== this._myId) this._deleteCard.remove();
     this._countLikeElement = this._element.querySelector(".card__like-count");
-    this._countLikeElement.textContent = this._countLikes.length;
+    this._countLikeElement.textContent = this._likes.length;
+    this._likes.forEach((element) => {
+      if (element._id == this._myId)
+        this._likeCard.classList.add("card__like_active");
+    });
     this._setEventListeners();
     this._element.querySelector(".card__title").textContent = this._title;
     this._cardImg.src = this._image;
@@ -66,7 +71,7 @@ class Card {
       popup.open();
 
       deleteModalBtn.addEventListener("click", () => {
-        this._removeCard();
+        this._removeCard(this._cardId);
         popup.close();
       });
 
