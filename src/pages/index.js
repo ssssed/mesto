@@ -10,20 +10,14 @@ import {
   editBtn,
   editForm,
   addBtn,
-  addInputName,
-  addInputLink,
   addForm,
-  initialCards,
   userNameInput,
   userJobInput,
   formLists,
   formValidators,
-  deliteModal,
-  deleteModalBtn,
-  modalAvatar,
-  modalAvatarCloseBtn,
-  modalAvatarForm,
   avatarIcon,
+  modalEditSubmitBtn,
+  modalAddSubmitBtn,
 } from "../utils/constants.js";
 
 const api = new Api({
@@ -78,19 +72,24 @@ const addPopupWithForm = new PopupWithForm(
   ".modal-add__inner",
   ".modal-add",
   (data) => {
-    api.postCard(data.inputTitle, data.inputLink).then((res) => {
-      const card = createCard(
-        res,
-        ".template-card",
-        userInfo.getUserInfo().id,
-        api
-      );
-      renderCards.addItem(card, "new");
-    });
-    addPopupWithForm.close();
+    modalAddSubmitBtn.textContent = "Создаю...";
+    api
+      .postCard(data.inputTitle, data.inputLink)
+      .then((res) => {
+        const card = createCard(
+          res,
+          ".template-card",
+          userInfo.getUserInfo().id,
+          api
+        );
+        renderCards.addItem(card, "new");
+        addPopupWithForm.close();
+      })
+      .finally(() => (modalAddSubmitBtn.textContent = "Создать"))
+      .catch((error) => alert(error));
   }
 );
-// modalAvatar, modalAvatarCloseBtn, modalAvatarForm;
+
 const changeAvatarPopupWithForm = new PopupWithForm(
   ".modal-avatar__inner",
   ".modal-avatar",

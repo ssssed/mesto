@@ -20,3 +20,5 @@ export const modalAvatarCloseBtn = document.querySelector(
 );
 export const modalAvatarForm = document.querySelector(".modal-avatar__inner");
 export const avatarIcon = document.querySelector(".profile__img-container");
+export const modalEditSubmitBtn = document.querySelector(".modal-edit__save");
+export const modalAddSubmitBtn = document.querySelector(".modal-add__save");

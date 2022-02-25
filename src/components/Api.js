@@ -5,12 +5,18 @@ export class Api {
     this._authorization = options.headers.authorization;
   }
 
+  _getResponseData(res) {
+    return res.ok
+      ? res.json()
+      : Promise.reject("Error: " + res.status + res.statusText);
+  }
+
   getCards() {
     return fetch(this._baseUrl, {
       headers: {
         authorization: this._authorization,
       },
-    }).then((res) => res.json());
+    }).then((res) => this._getResponseData(res));
   }
 
   renderProfile() {
@@ -18,9 +24,9 @@ export class Api {
       headers: {
         authorization: this._authorization,
       },
-    }).then((res) => res.json());
+    }).then((res) => this._getResponseData(res));
   }
-  // Проверить данные, что они получены
+
   postCard(title, link) {
     return fetch(this._baseUrl, {
       method: "POST",
@@ -32,7 +38,7 @@ export class Api {
         name: title,
         link: link,
       }),
-    }).then((res) => res.json());
+    }).then((res) => this._getResponseData(res));
   }
 
   deleteCard(id) {
@@ -42,7 +48,7 @@ export class Api {
         "Content-Type": "application/json",
         authorization: this._authorization,
       },
-    }).then((res) => res.json());
+    }).then((res) => this._getResponseData(res));
   }
 
   putLike(id) {
@@ -54,7 +60,7 @@ export class Api {
         },
         method: "PUT",
       }
-    ).then((res) => res.json());
+    ).then((res) => this._getResponseData(res));
   }
 
   deleteLike(id) {
@@ -66,7 +72,7 @@ export class Api {
         },
         method: "DELETE",
       }
-    ).then((res) => res.json());
+    ).then((res) => this._getResponseData(res));
   }
 
   changeAvatar(link) {
@@ -78,6 +84,6 @@ export class Api {
       },
       method: "PATCH",
       body: JSON.stringify({ avatar: `${link}` }),
-    }).then((res) => res.json());
+    }).then((res) => this._getResponseData(res));
   }
 }
