@@ -21,6 +21,7 @@
 @import url(../blocks/profile/__social/profile__social.css);
 @import url(../blocks/profile/__add/profile__add.css);
 @import url(../blocks/profile/__edit/profile__edit.css);
+@import url(../blocks/profile/__img-container/profile__img-container.css);
 /* elements */
 @import url(../blocks/elements/elements.css);
 /* card */

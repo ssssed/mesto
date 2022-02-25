@@ -2,6 +2,7 @@ export class UserInfo {
   constructor(data) {
     this._userName = document.querySelector(data.userName);
     this._userInfo = document.querySelector(data.userJob);
+    this._userAvatar = document.querySelector(data.userAvatar);
   }
 
   getUserInfo() {
@@ -16,5 +17,9 @@ export class UserInfo {
     this._userName.textContent = name;
     this._userInfo.textContent = description;
     this.id = userId;
+  }
+
+  updateUserAvatar(link) {
+    this._userAvatar.src = link;
   }
 }

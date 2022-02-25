@@ -68,4 +68,16 @@ export class Api {
       }
     ).then((res) => res.json());
   }
+
+  changeAvatar(link) {
+    console.log(link);
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort36/users/me/avatar`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: this._authorization,
+      },
+      method: "PATCH",
+      body: JSON.stringify({ avatar: `${link}` }),
+    }).then((res) => res.json());
+  }
 }

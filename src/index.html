@@ -13,11 +13,13 @@
       <main class="content">
         <section class="profile">
           <div class="profile__content">
-            <img
+            <div class="profile__img-container">
+              <img
               src="<%=require('./images/Avatar.png')%>"
               alt="Фото профиля"
               class="profile__img"
             />
+            </div>
             <div class="profile__info">
               <div class="profile__social">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -153,7 +155,27 @@
             type="button"
             class="modal__close-btn modal-delete__close-btn"
           ></button>
-            <button type="button" class="modal__save modal-delete__submit">Да</button>
+            <button type="submit" class="modal__save modal-delete__submit">Да</button>
+        </div>
+    </section>
+    <section class="modal modal-avatar">
+        <div class="modal__container modal-avatar__container">
+            <h2 class="modal__title modal-avatar__title">Обновить аватар</h2>
+          <button
+            type="button"
+            class="modal__close-btn modal-avatar__close-btn"
+          ></button>
+          <form name="modal-avatar" class="modal__inner modal-avatar__inner">
+            <input
+              id="inputAvatarLink"
+              type="url"
+              placeholder="Ссылка на картинку"
+              class="modal__input modal-avatar__input"
+              required
+            />
+            <span class="modal__input-error" id="inputAvatarLink-error"></span>
+            <button type="submit" class="modal__save modal-avatar__submit">Да</button>
+          </form>
         </div>
     </section>
   </body>

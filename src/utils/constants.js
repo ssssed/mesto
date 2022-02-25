@@ -14,3 +14,9 @@ export const modalDeleteCloseBtn = document.querySelector(
 );
 export const initialCards = [];
 export const formValidators = {};
+export const modalAvatar = document.querySelector(".modal-avatar");
+export const modalAvatarCloseBtn = document.querySelector(
+  ".modal-avatar__submit"
+);
+export const modalAvatarForm = document.querySelector(".modal-avatar__inner");
+export const avatarIcon = document.querySelector(".profile__img-container");

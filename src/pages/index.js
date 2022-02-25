@@ -20,6 +20,10 @@ import {
   formValidators,
   deliteModal,
   deleteModalBtn,
+  modalAvatar,
+  modalAvatarCloseBtn,
+  modalAvatarForm,
+  avatarIcon,
 } from "../utils/constants.js";
 
 const api = new Api({
@@ -34,6 +38,7 @@ const api = new Api({
 const userInfo = new UserInfo({
   userName: ".profile__name",
   userJob: ".profile__job",
+  userAvatar: ".profile__img",
 });
 
 api.renderProfile().then((result) => {
@@ -63,8 +68,7 @@ const renderCards = new Section(
 const editPopupWithForm = new PopupWithForm(
   ".modal-edit__inner",
   ".modal-edit",
-  (evt) => {
-    evt.preventDefault();
+  () => {
     userInfo.setUserInfo(userNameInput.value, userJobInput.value);
     editPopupWithForm.close();
   }
@@ -86,6 +90,17 @@ const addPopupWithForm = new PopupWithForm(
     addPopupWithForm.close();
   }
 );
+// modalAvatar, modalAvatarCloseBtn, modalAvatarForm;
+const changeAvatarPopupWithForm = new PopupWithForm(
+  ".modal-avatar__inner",
+  ".modal-avatar",
+  (data) => {
+    api.changeAvatar(data.inputAvatarLink);
+    userInfo.updateUserAvatar(data.inputAvatarLink);
+    changeAvatarPopupWithForm.close();
+  }
+);
+changeAvatarPopupWithForm.setEventListeners();
 
 renderCards.renderItems();
 addPopupWithForm.setEventListeners();
@@ -118,6 +133,15 @@ addBtn.addEventListener("click", (evt) => {
   formValidators[addForm.name].resetValidation();
   addPopupWithForm.open();
 });
+
+avatarIcon.addEventListener("click", () => {
+  changeAvatarPopupWithForm.open();
+});
+
+// modalAvatarCloseBtn.addEventListener("click", () => {
+//   changeAvatarPopupWithForm.close();
+// });
+
 export function createCard(data, templateClass, id, api) {
   const newCard = new Card(data, templateClass, id, api, () => {
     popupWithImage.open(data.name, data.link);
