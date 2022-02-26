@@ -10,6 +10,7 @@ export class UserInfo {
       userName: this._userName.textContent,
       userDescription: this._userInfo.textContent,
       id: this.id,
+      avatar: this._userAvatar,
     };
   }
 

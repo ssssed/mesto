@@ -22,11 +22,13 @@ import {
   modalDeleteForm,
   deliteModal,
   deleteModalBtn,
+  profileImg,
+  modalAvatarSubmitBtn,
+  modalAvatarForm,
 } from "../utils/constants.js";
 
 const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort36",
-  profileUrl: "https://nomoreparties.co/v1/cohort36/users/me",
   headers: {
     authorization: "5b005959-c919-4ebc-988e-c1e91f53093c",
     "Content-Type": "application/json",
@@ -38,12 +40,18 @@ const userInfo = new UserInfo({
   userJob: ".profile__job",
   userAvatar: ".profile__img",
 });
-
-api.renderProfile().then((result) => {
-  userInfo.setUserInfo(result.name, result.about, result._id);
-  userInfo.getUserInfo();
-  api.getCards();
-});
+api
+  .renderProfile()
+  .then((result) => {
+    userInfo.setUserInfo(result.name, result.about, result._id);
+    userInfo.updateUserAvatar(result.avatar);
+  })
+  .then(() => {
+    api.getCards();
+  })
+  .catch((err) => {
+    alert(err);
+  });
 
 const popupWithConfirmDelete = new PopupWithConfirmDelete(
   ".modal-delete",
@@ -87,9 +95,20 @@ const renderCards = new Section(
 const editPopupWithForm = new PopupWithForm(
   ".modal-edit__inner",
   ".modal-edit",
-  () => {
-    userInfo.setUserInfo(userNameInput.value, userJobInput.value);
-    editPopupWithForm.close();
+  (res) => {
+    modalEditSubmitBtn.textContent = "Сохраняю...";
+    api
+      .updateProfile(res.inputName, res.inputJob)
+      .then((res) => {
+        userInfo.setUserInfo(res.name, res.about);
+        editPopupWithForm.close();
+      })
+      .finally(() => {
+        modalEditSubmitBtn.textContent = "Сохранить";
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }
 );
 editPopupWithForm.setEventListeners();
@@ -120,9 +139,19 @@ const changeAvatarPopupWithForm = new PopupWithForm(
   ".modal-avatar__inner",
   ".modal-avatar",
   (data) => {
-    api.changeAvatar(data.inputAvatarLink);
-    userInfo.updateUserAvatar(data.inputAvatarLink);
-    changeAvatarPopupWithForm.close();
+    modalAvatarSubmitBtn.textContent = "Сохраняю...";
+    api
+      .changeAvatar(data.inputAvatarLink)
+      .then((res) => {
+        userInfo.updateUserAvatar(res.avatar);
+        changeAvatarPopupWithForm.close();
+      })
+      .finally(() => {
+        modalAvatarSubmitBtn.textContent = "Да";
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }
 );
 changeAvatarPopupWithForm.setEventListeners();
@@ -160,12 +189,9 @@ addBtn.addEventListener("click", (evt) => {
 });
 
 avatarIcon.addEventListener("click", () => {
+  formValidators[modalAvatarForm.name].resetValidation();
   changeAvatarPopupWithForm.open();
 });
-
-// modalAvatarCloseBtn.addEventListener("click", () => {
-//   changeAvatarPopupWithForm.close();
-// });
 
 export function createCard(data, templateClass, id, api, popupWithConfirm) {
   const newCard = new Card(

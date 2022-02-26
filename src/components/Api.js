@@ -1,8 +1,6 @@
 export class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
-    this._profileUrl = options.profileUrl;
-    this._authorization = options.headers.authorization;
     this._headers = options.headers;
   }
 
@@ -19,8 +17,19 @@ export class Api {
   }
 
   renderProfile() {
-    return fetch(this._profileUrl, {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
+    }).then((res) => this._getResponseData(res));
+  }
+
+  updateProfile(name, about) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        about: about,
+      }),
     }).then((res) => this._getResponseData(res));
   }
 

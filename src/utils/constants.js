@@ -1,4 +1,5 @@
 export const editBtn = document.querySelector(".profile__edit");
+export const profileImg = document.querySelector(".profile__img");
 export const editForm = document.querySelector(".modal-edit__inner");
 export const addBtn = document.querySelector(".profile__add");
 export const addInputName = document.querySelector(".modal__input_type_title");
@@ -16,7 +17,7 @@ export const modalDeleteCloseBtn = document.querySelector(
 export const initialCards = [];
 export const formValidators = {};
 export const modalAvatar = document.querySelector(".modal-avatar");
-export const modalAvatarCloseBtn = document.querySelector(
+export const modalAvatarSubmitBtn = document.querySelector(
   ".modal-avatar__submit"
 );
 export const modalAvatarForm = document.querySelector(".modal-avatar__inner");
