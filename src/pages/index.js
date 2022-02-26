@@ -21,7 +21,7 @@ import {
 } from "../utils/constants.js";
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort36/cards",
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort36",
   profileUrl: "https://nomoreparties.co/v1/cohort36/users/me",
   headers: {
     authorization: "5b005959-c919-4ebc-988e-c1e91f53093c",
