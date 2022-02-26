@@ -3,6 +3,7 @@ import { Card } from "../components/Card.js";
 import { Section } from "../components/Section.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithConfirmDelete } from "../components/PopupWithConfirmDelete.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Api } from "../components/Api.js";
@@ -18,6 +19,9 @@ import {
   avatarIcon,
   modalEditSubmitBtn,
   modalAddSubmitBtn,
+  modalDeleteForm,
+  deliteModal,
+  deleteModalBtn,
 } from "../utils/constants.js";
 
 const api = new Api({
@@ -41,6 +45,26 @@ api.renderProfile().then((result) => {
   api.getCards();
 });
 
+const popupWithConfirmDelete = new PopupWithConfirmDelete(
+  ".modal-delete",
+  ".modal-delete__inner",
+  (card) => {
+    deleteModalBtn.textContent = "Удаление...";
+    api
+      .deleteCard(card._cardId)
+      .then(() => {
+        card.remove();
+        popupWithConfirmDelete.close();
+      })
+      .catch((err) => {
+        alert(err);
+      })
+      .finally(() => {
+        deleteModalBtn.textContent = "Да";
+      });
+  }
+);
+popupWithConfirmDelete.setEventListeners();
 const popupWithImage = new PopupWithImage(".opencard");
 popupWithImage.setEventListeners();
 const renderCards = new Section(
@@ -51,7 +75,8 @@ const renderCards = new Section(
         item,
         ".template-card",
         userInfo.getUserInfo().id,
-        api
+        api,
+        popupWithConfirmDelete
       );
       renderCards.addItem(cardElement);
     },
@@ -80,7 +105,8 @@ const addPopupWithForm = new PopupWithForm(
           res,
           ".template-card",
           userInfo.getUserInfo().id,
-          api
+          api,
+          popupWithConfirmDelete
         );
         renderCards.addItem(card, "new");
         addPopupWithForm.close();
@@ -141,9 +167,16 @@ avatarIcon.addEventListener("click", () => {
 //   changeAvatarPopupWithForm.close();
 // });
 
-export function createCard(data, templateClass, id, api) {
-  const newCard = new Card(data, templateClass, id, api, () => {
-    popupWithImage.open(data.name, data.link);
-  });
+export function createCard(data, templateClass, id, api, popupWithConfirm) {
+  const newCard = new Card(
+    data,
+    templateClass,
+    id,
+    api,
+    popupWithConfirm,
+    () => {
+      popupWithImage.open(data.name, data.link);
+    }
+  );
   return newCard.generateCard();
 }

@@ -8,6 +8,7 @@ export const userNameInput = document.querySelector(".modal__input_type_name");
 export const userJobInput = document.querySelector(".modal__input_type_job");
 export const formLists = document.querySelectorAll(".modal__inner");
 export const deliteModal = document.querySelector(".modal-delite");
+export const modalDeleteForm = document.querySelector(".modal-delete__inner");
 export const deleteModalBtn = document.querySelector(".modal-delete__submit");
 export const modalDeleteCloseBtn = document.querySelector(
   ".modal-delete__close-btn"
