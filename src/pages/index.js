@@ -55,7 +55,6 @@ api
 
 const popupWithConfirmDelete = new PopupWithConfirmDelete(
   ".modal-delete",
-  ".modal-delete__inner",
   (card) => {
     deleteModalBtn.textContent = "Удаление...";
     api
@@ -93,7 +92,6 @@ const renderCards = new Section(
 );
 
 const editPopupWithForm = new PopupWithForm(
-  ".modal-edit__inner",
   ".modal-edit",
   (res) => {
     modalEditSubmitBtn.textContent = "Сохраняю...";
@@ -113,7 +111,6 @@ const editPopupWithForm = new PopupWithForm(
 );
 editPopupWithForm.setEventListeners();
 const addPopupWithForm = new PopupWithForm(
-  ".modal-add__inner",
   ".modal-add",
   (data) => {
     modalAddSubmitBtn.textContent = "Создаю...";
@@ -136,7 +133,6 @@ const addPopupWithForm = new PopupWithForm(
 );
 
 const changeAvatarPopupWithForm = new PopupWithForm(
-  ".modal-avatar__inner",
   ".modal-avatar",
   (data) => {
     modalAvatarSubmitBtn.textContent = "Сохраняю...";
