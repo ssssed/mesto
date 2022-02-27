@@ -7,7 +7,7 @@
 @media screen and (max-width:1024px){.header__img{margin:25px 0 0 28px;width:100px}}
 .profile{color:#fff;display:flex;justify-content:space-between;margin:0 auto;max-width:880px;padding:40px 0 50px}@media screen and (max-width:1024px){.profile{flex-direction:column;margin:0;max-width:100%;padding:40px 0 37px}}
 .profile__content{display:flex;max-width:486px}@media screen and (max-width:1024px){.profile__content{flex-direction:column;max-width:100%}}
-.profile__img{border-radius:50%;height:100%;margin:0 auto;min-height:120px;min-width:120px}@media screen and (max-width:1024px){.profile__img{height:120px;margin:0 auto;width:120px}}
+.profile__img{border-radius:50%;height:120px;height:100%;margin:0 auto;width:120px}@media screen and (max-width:1024px){.profile__img{height:120px;margin:0 auto;width:120px}}
 .profile__info{margin:0 0 0 30px;max-width:100%}@media screen and (max-width:1024px){.profile__info{margin:0 auto}}
 .profile__name{font-family:Inter,Arial,Helvetica,sans-serif;font-size:43px;font-style:normal;font-weight:500;line-height:48px;margin:22px 0 0;max-width:330px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:1024px){.profile__name{font-size:27px;line-height:33px;margin:29px 11px 0 27px;max-width:208px;text-align:center}}
 .profile__job{font-family:Inter,Arial,Helvetica,sans-serif;font-size:18px;font-style:normal;font-weight:400;line-height:22px;margin:0;max-width:294px;overflow:hidden;padding-top:8px;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:1024px){.profile__job{font-size:14px;line-height:17px;max-width:244px;padding-top:6px;text-align:center}}
