@@ -40,18 +40,12 @@ const userInfo = new UserInfo({
   userJob: ".profile__job",
   userAvatar: ".profile__img",
 });
-api
-  .renderProfile()
-  .then((result) => {
-    userInfo.setUserInfo(result.name, result.about, result._id);
-    userInfo.updateUserAvatar(result.avatar);
-  })
-  .then(() => {
-    api.getCards();
-  })
-  .catch((err) => {
-    alert(err);
-  });
+
+Promise.all([api.getCards(), api.renderProfile()]).then((res) => {
+  userInfo.setUserInfo(res[1].name, res[1].about, res[1]._id);
+  userInfo.updateUserAvatar(res[1].avatar);
+  renderCards.renderItems(res[0])
+}).catch((err) => {alert(err)});
 
 const popupWithConfirmDelete = new PopupWithConfirmDelete(
   ".modal-delete",
@@ -76,7 +70,6 @@ const popupWithImage = new PopupWithImage(".opencard");
 popupWithImage.setEventListeners();
 const renderCards = new Section(
   {
-    data: api.getCards(),
     render: (item) => {
       const cardElement = createCard(
         item,
@@ -152,7 +145,6 @@ const changeAvatarPopupWithForm = new PopupWithForm(
 );
 changeAvatarPopupWithForm.setEventListeners();
 
-renderCards.renderItems();
 addPopupWithForm.setEventListeners();
 
 formLists.forEach((formElement) => {

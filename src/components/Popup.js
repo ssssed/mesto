@@ -24,7 +24,7 @@ export class Popup {
 
     this._popup.addEventListener("mousedown", (evt) => {
       if (evt.target.classList.contains("modal")) {
-        this.close(this._popup);
+        this.close();
       }
     });
   }

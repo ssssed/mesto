@@ -24,9 +24,9 @@ export class Card {
     if (!this._likeCard.classList.contains("card__like_active")) {
       this._api
         .putLike(this._cardId)
-        .then(() => {
+        .then((res) => {
           this._likeCard.classList.toggle("card__like_active");
-          this._countLikeElement.textContent++;
+          this._countLikeElement.textContent = res.likes.length;
         })
         .catch((err) => {
           alert(err);
@@ -34,9 +34,9 @@ export class Card {
     } else {
       this._api
         .deleteLike(this._cardId)
-        .then(() => {
+        .then((res) => {
           this._likeCard.classList.toggle("card__like_active");
-          this._countLikeElement.textContent--;
+          this._countLikeElement.textContent = res.likes.length;
         })
         .catch((err) => {
           alert(err);
