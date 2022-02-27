@@ -41,10 +41,10 @@ const userInfo = new UserInfo({
   userAvatar: ".profile__img",
 });
 
-Promise.all([api.getCards(), api.renderProfile()]).then((res) => {
-  userInfo.setUserInfo(res[1].name, res[1].about, res[1]._id);
-  userInfo.updateUserAvatar(res[1].avatar);
-  renderCards.renderItems(res[0])
+Promise.all([api.getCards(), api.renderProfile()]).then(([cards,userData]) => {
+  userInfo.setUserInfo(userData.name, userData.about, userData._id);
+  userInfo.updateUserAvatar(userData.avatar);
+  renderCards.renderItems(cards);
 }).catch((err) => {alert(err)});
 
 const popupWithConfirmDelete = new PopupWithConfirmDelete(
@@ -91,7 +91,7 @@ const editPopupWithForm = new PopupWithForm(
     api
       .updateProfile(res.inputName, res.inputJob)
       .then((res) => {
-        userInfo.setUserInfo(res.name, res.about);
+        userInfo.setUserInfo(res.name, res.about, res._id);
         editPopupWithForm.close();
       })
       .finally(() => {
@@ -136,7 +136,7 @@ const changeAvatarPopupWithForm = new PopupWithForm(
         changeAvatarPopupWithForm.close();
       })
       .finally(() => {
-        modalAvatarSubmitBtn.textContent = "Да";
+        modalAvatarSubmitBtn.textContent = "Сохранить";
       })
       .catch((err) => {
         alert(err);
